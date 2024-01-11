@@ -1,0 +1,17 @@
+{
+  "name": "csc-307-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "create-react-app": "^5.0.1"
+  }
+}
