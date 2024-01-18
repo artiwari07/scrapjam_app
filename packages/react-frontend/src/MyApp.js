@@ -1,33 +1,11 @@
 // src/MyApp.js
 import React, { useState } from "react";
 import Table from "./Table";
+import Form from "./Form";
 
 
-  function MyApp() {
-    const [characters, setCharacters] = useState([
-        {
-          name: "Alex",
-          animal: "Lion", 
-          hobby: "Performing"
-          
-        },
-        {
-          name: "Joe",
-          animal: "Monkey",
-          hobby : "Hugging"
-        },
-        {
-          name: "Delaney",
-          animal: "Oxolotol",
-          hobby: "Dancing"
-        },
-        {
-          name: "Dennis",
-          animal: "Duck",
-          hobby: "Hop Scotch"
-        }
-      
-    ]);
+function MyApp() {
+    const [characters, setCharacters] = useState([]);
 
 
     function removeOneCharacter(index) {
@@ -43,6 +21,7 @@ import Table from "./Table";
           characterData={characters}
           removeCharacter={removeOneCharacter}
         />
+        <Form />
       </div>
     );
   }
