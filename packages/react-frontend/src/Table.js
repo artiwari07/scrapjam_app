@@ -24,6 +24,7 @@ function TableHeader() {
             <button onClick={() => props.removeCharacter(index)}>
             Delete
             </button>
+            
           </td>
           </tr>
       );
