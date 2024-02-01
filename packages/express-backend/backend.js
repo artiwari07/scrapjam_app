@@ -65,15 +65,19 @@ app.get("/users/:id", (req, res) => {
   
 
 const addUser = (user) => {
-    users["users_list"].push(user);
-    return user;
+    const randomId = JSON.stringify(Math.floor(Math.random() * 900));
+    const newUser = { id: randomId , ...user};
+    users["users_list"].push(newUser);
+    return newUser;
   };
   
 app.post("/users", (req, res) => {
     const userToAdd = req.body;
     addUser(userToAdd);
-    res.send();
+    res.status(201).send();
   });
+
+
 
 
 const deleteUser = (userId) => {
@@ -89,7 +93,7 @@ const deleteUser = (userId) => {
 app.delete("/users/:id", (req, res) => {
     const id = req.params["id"];
     if (deleteUser(id)) {
-        res.send();
+        res.status(204).send();
     } else {
         res.status(404).send("User not found.");
     }
