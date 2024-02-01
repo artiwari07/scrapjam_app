@@ -12,23 +12,28 @@ function MyApp() {
       useState([]);
 
 
-  function deleteUser(person){
-    const promise = fetch("Http://localhost:8000/users", {
+  function deleteUser(id){
+    const promise = fetch(`Http://localhost:8000/users/${id}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(person),
     });
 
     return promise;
   }
 
-  function removeOneCharacter(index) {
-    const updated = characters.filter((character, i) => {
-      return i !== index;
-    });
-    setCharacters(updated);
+  function removeOneCharacter(id, index) {
+    deleteUser(id)
+        .then((result) => {
+          if (result.status === 204) {
+            const updated = characters.filter((character, i) => {
+              return i !== index;
+            });
+            setCharacters(updated);
+          }})
+        .catch((error) => {
+            console.log(error);
+          })
+
+    
   }
 
   function fetchUsers() {
