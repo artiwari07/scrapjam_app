@@ -20,12 +20,12 @@ app.listen(port, () => {
 const users = {
     users_list: [
       {
-        id: "xyz789",
+        id: "789",
         name: "Charlie",
         job: "Janitor"
       },
       {
-        id: "abc123",
+        id: "123",
         name: "Mac",
         job: "Bouncer"
       },
@@ -35,12 +35,12 @@ const users = {
         job: "Professor"
       },
       {
-        id: "yat999",
+        id: "999",
         name: "Dee",
         job: "Aspring actress"
       },
       {
-        id: "zap555",
+        id: "555",
         name: "Dennis",
         job: "Bartender"
       }
