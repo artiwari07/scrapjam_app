@@ -1,15 +1,15 @@
 // backend.js
 import express from "express";
+import cors from "cors";
+
 
 const app = express();
 const port = 8000;
 
-
+app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+
 
 app.listen(port, () => {
   console.log(
@@ -49,7 +49,7 @@ const users = {
 
   
   
-  const findUserById = (id) =>
+const findUserById = (id) =>
   users["users_list"].find((user) => user["id"] === id);
 
 app.get("/users/:id", (req, res) => {
@@ -69,8 +69,45 @@ const addUser = (user) => {
     return user;
   };
   
-  app.post("/users", (req, res) => {
+app.post("/users", (req, res) => {
     const userToAdd = req.body;
     addUser(userToAdd);
     res.send();
+  });
+
+
+const deleteUser = (userId) => {
+    const index = users["users_list"].findIndex(user => user.id === userId);
+    if (index !== -1) {
+        users["users_list"].splice(index, 1);
+        return true;
+    } else {
+        return false;
+    }
+};
+
+app.delete("/users/:id", (req, res) => {
+    const id = req.params["id"];
+    if (deleteUser(id)) {
+        res.send();
+    } else {
+        res.status(404).send("User not found.");
+    }
+});
+
+const findUserByName = (name) => {
+    return users["users_list"].filter(
+      (user) => user["name"] === name
+    );
+  };
+  
+app.get("/users", (req, res) => {
+    const name = req.query.name;
+    if (name != undefined) {
+      let result = findUserByName(name);
+      result = { users_list: result };
+      res.send(result);
+    } else {
+      res.send(users);
+    }
   });
