@@ -21,9 +21,9 @@ function TableHeader() {
         <tr key={index}>
           <td>{row.name}</td>
           <td>{row.job}</td>
-          <td>{row.id}</td>
+          <td>{row._id}</td>
           <td>
-            <button onClick={() => props.removeCharacter(row.id, index)}>
+            <button onClick={() => props.removeCharacter(row._id, index)}>
             Delete
             </button>
             

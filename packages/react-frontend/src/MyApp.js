@@ -32,9 +32,7 @@ function MyApp() {
         .catch((error) => {
             console.log(error);
           })
-
-    
-  }
+        }
 
   function fetchUsers() {
       const promise = fetch("http://localhost:8000/users");
@@ -89,7 +87,4 @@ function MyApp() {
   export default MyApp;
   
     
-
-   
-
 
