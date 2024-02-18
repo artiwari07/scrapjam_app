@@ -10,6 +10,7 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 
+
 const startServer = async () => {
   try {
     await mongoose.connect("mongodb://localhost:27017/user", {
