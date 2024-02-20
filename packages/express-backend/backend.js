@@ -1,7 +1,7 @@
 // backend.js
 import express from "express";
 import cors from "cors";
-import userServices from "./models/user-services.js";
+import entryServices from "./models/entry-services.js";
 
 
 
@@ -19,13 +19,8 @@ app.listen(port, () => {
   );
 });
 
-const users = {
-    users_list: [
-      {
-        id_: "789",
-        name: "Charlie",
-        job: "Janitor"
-      },
+const entries = {
+    entries_list: [
 
     ]
   };
@@ -35,15 +30,15 @@ const users = {
   
 
   
-  app.post("/users", async (req, res) => {
-    const user = req.body;
-    const savedUser = await userServices.addUser(user).
-    then(savedUser =>{
-      if (savedUser)res.status(201).send(savedUser);
-      else res.status(400).send("Unable to add user");
+  app.post("/entries", async (req, res) => {
+    const entry = req.body;
+    const savedEntry = await entryServices.addEntry(entry).
+    then(savedEntry =>{
+      if (savedEntry)res.status(201).send(savedEntry);
+      else res.status(400).send("Unable to add entry");
     })
     .catch(error =>{
-      res.status(500).send(`Error adding user: ${error.message}`);
+      res.status(500).send(`Error adding entry: ${error.message}`);
     })
     
     
@@ -54,12 +49,12 @@ const users = {
 
 
 
-app.delete("/users/:id", (req, res) => {
+app.delete("/entries/:id", (req, res) => {
     const id = req.params["id"];
     
-    userServices.deleteUserById(id)
-    .then(user => {
-    if (user) {
+    entryServices.deleteEntryById(id)
+    .then(entry => {
+    if (entry) {
       res.status(204).send();
       }
       else{
@@ -67,63 +62,54 @@ app.delete("/users/:id", (req, res) => {
       }
     })
     .catch(error => {
-      res.status(500).send(`Error deleting user: ${error.message}`);
+      res.status(500).send(`Error deleting entry: ${error.message}`);
     });
   });
 
 
-  app.get("/users", async (req, res) => {
+
+//get all entriers
+  app.get("/entries", async (req, res) => {
     const name = req.query["name"];
-    const job = req.query["job"];
+    const date = req.query["date"];
     try {
-      const result = await userServices.getUsers(name, job);
-      res.send({ users_list: result });
+      const result = await userServices.getEntries(name, date);
+      res.send({ entries_list: result });
     } catch (error) {
       console.log(error);
       res.status(500).send("An error ocurred in the server.");
     }
   });
 
+
 //get user by name
-app.get("/users", (req, res) => {
+app.get("/entries", (req, res) => {
     const name = req.query.name;
-    userServices.findUserByName(name)
-  .then(user => {
-    if (!user) {
+    entryServices.findEntryByName(name)
+  .then(entry => {
+    if (!entry) {
       res.status(404).send("Resource not found.");
     } else {
-      res.send({ users_list: result });}
+      res.send({ entries_list: result });}
     })
     .catch(error => {
-      res.status(500).send(`Error retrieving user: ${error.message}`);
+      res.status(500).send(`Error retrieving entry: ${error.message}`);
     });
   });
 
 
 //get user by id
-app.get("/users/:id", (req, res) => {
+app.get("/entries/:id", (req, res) => {
   const id = req.params["id"]; //or req.params.id
-  userServices.findUserById(id)
-  .then(user => {
-    if (!user) {
+  entryServices.findEntryById(id)
+  .then(entry => {
+    if (!entry) {
       res.status(404).send("Resource not found.");
     } else {
-      res.send({ users_list: result });}
+      res.send({ entries_list: result });}
     })
     .catch(error => {
-      res.status(500).send(`Error retrieving user: ${error.message}`);
+      res.status(500).send(`Error retrieving entry: ${error.message}`);
     });
   });
 
- //get user by name and job
- app.get("/users", async (req, res) => {
-  const name = req.query["name"];
-  const job = req.query["job"];
-  try {
-    const result = await userServices.getUsers(name, job);
-    res.send({ users_list: result });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("An error ocurred in the server.");
-  }
-});
