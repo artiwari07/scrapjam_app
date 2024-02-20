@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 import userModel from "./user.js";
+import sanitize from 'mongo-sanitize';
 
 mongoose.set("debug", true);
 
 mongoose
-  .connect("mongodb://localhost:27017/user", {
+  .connect("mongodb://localhost:27017/scrapjam", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -35,9 +36,20 @@ function addUser(user) {
   return promise;
 }
 
-function findUserByName(name) {
-  return userModel.find({ name: name });
+function isValidUsername(username) {
+  const re = /^[a-zA-Z0-9_]+$/;
+  return re.test(username);
 }
+
+async function findUserByName(username) {
+  if (!isValidUsername(username)) {
+    throw new Error('Invalid username');
+  }
+
+  let sanitizedUsername = sanitize(username);
+  return await userModel.find({ username: sanitizedUsername });
+}
+
 
 function findUserByJob(job) {
   return userModel.find({ job: job });

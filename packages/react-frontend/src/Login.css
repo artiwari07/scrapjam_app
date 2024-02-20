@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #6a5acd; /* Darker purple background */
+  color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160vh; /* Adjust the height as needed, for example, 160% of the viewport height */
+}
+
+.form-container {
+  background-color: #ae77ae; /* Pale purple window */
+  padding: 20px;
+  border-radius: 90px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 400%; /* Adjust the width as needed */
+  max-width: 900px;
+  height: 400%; /* Adjust the width as needed */
+  max-height: 500px; /* Set a max-width to prevent it from becoming too wide */
+}
+
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 300px;
+  border: 30px solid rgb(0, 0, 0);
+  border-radius: 100px;
+}
+
+.login-button,
+.create-account-button {
+  width: 100%;
+  max-width: 900px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+
+.login-button {
+  background: rgb(176, 154, 196);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.create-account-button {
+  background: rgb(128, 105, 233);
+  margin-bottom: 30px;
+}
