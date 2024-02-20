@@ -5,6 +5,11 @@ import Form from "./Form";
 
 function MyApp() {
     const [characters, setCharacters] = useState([]);
+    const [images, setImages] = useState([]);
+
+    function addImage(url){
+      setImages([...images, url]);
+    }
 
     function updateList(person) {
       postUser(person)
@@ -101,6 +106,24 @@ function MyApp() {
           removeCharacter={removeOneCharacter}
         />
         <Form handleSubmit={updateList} />
+        <div className="image-uploader">
+          <h2>Upload Image</h2>
+            <input
+              type="text"
+              placeholder="Enter image URL"
+              onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                addImage(e.target.value);
+                e.target.value = ''; 
+              }
+              }}
+              />
+              <div className="image-gallery">
+                {images.map((url, index) => (
+                  <img key={index} src={url} alt={`User uploaded ${index}`} style={{ width: "100px", height: "100px", padding: "5px" }} />
+                ))}
+              </div>
+          </div>
       </div>
     );
 
