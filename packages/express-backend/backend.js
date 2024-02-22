@@ -4,6 +4,8 @@ import cors from "cors";
 import mongoose from "mongoose";
 import userServices from "./models/user-services.js";
 import bcrypt from "bcrypt";
+import entryServices from "./models/entry-services.js";
+
 
 const app = express();
 const port = 8000;
@@ -126,64 +128,74 @@ const startServer = async () => {
       }
     });
 
-    // app.get("/user", (req, res) => {
-    //   const name = req.query.name;
-    //   const job = req.query.job;
 
-    //   userServices.getUsers(name, job)
-    //     .then(user => {
-    //       res.send({ user_list: user });
-    //     })
-    //     .catch(error => {
-    //       res.status(500).send(`Error retrieving users: ${error.message}`);
-    //     });
-    // });
 
-    // app.get("/user/:id", (req, res) => {
-    //   const id = req.params.id;
+    app.delete("/entries/:id", (req, res) => {
+      const id = req.params["id"];
+      
+      entryServices.deleteEntryById(id)
+      .then(entry => {
+      if (entry) {
+        res.status(204).send();
+        }
+        else{
+          res.status(404).send("Resource not found.")
+        }
+      })
+      .catch(error => {
+        res.status(500).send(`Error deleting entry: ${error.message}`);
+      });
+    });
+  
+  
+  
+  //get all entriers
+    app.get("/entries", async (req, res) => {
+      const name = req.query["name"];
+      const date = req.query["date"];
+      try {
+        const result = await userServices.getEntries(name, date);
+        res.send({ entries_list: result });
+      } catch (error) {
+        console.log(error);
+        res.status(500).send("An error ocurred in the server.");
+      }
+    });
+  
+  
+  //get user by name
+  app.get("/entries", (req, res) => {
+      const name = req.query.name;
+      entryServices.findEntryByName(name)
+    .then(entry => {
+      if (!entry) {
+        res.status(404).send("Resource not found.");
+      } else {
+        res.send({ entries_list: result });}
+      })
+      .catch(error => {
+        res.status(500).send(`Error retrieving entry: ${error.message}`);
+      });
+    });
+  
+  
+  //get user by id
+  app.get("/entries/:id", (req, res) => {
+    const id = req.params["id"]; //or req.params.id
+    entryServices.findEntryById(id)
+    .then(entry => {
+      if (!entry) {
+        res.status(404).send("Resource not found.");
+      } else {
+        res.send({ entries_list: result });}
+      })
+      .catch(error => {
+        res.status(500).send(`Error retrieving entry: ${error.message}`);
+      });
+    });
+  
 
-    //   userServices.findUserById(id)
-    //     .then(user => {
-    //       if (!user) {
-    //         res.status(404).send("Resource not found.");
-    //       } else {
-    //         res.send(user);
-    //       }
-    //     })
-    //     .catch(error => {
-    //       res.status(500).send(`Error retrieving user: ${error.message}`);
-    //     });
-    // });
 
-    // app.post("/user", (req, res) => {
-    //   const userToAdd = req.body;
-
-    //   userServices.addUser(userToAdd)
-    //     .then(addedUser => {
-    //       res.status(201).send(addedUser);
-    //     })
-    //     .catch(error => {
-    //       res.status(500).send(`Error adding user: ${error.message}`);
-    //     });
-    // });
-
-    // app.delete("/user/:id", (req, res) => {
-    //   const id = req.params.id;
-
-    //   userServices.deleteUser(id)
-    //     .then(deletedUser => {
-    //       if (!deletedUser) {
-    //         res.status(404).send("Resource not found.");
-    //       } else {
-    //         res.status(204).send(); // Respond with a 204 status code (No Content)
-    //       }
-    //     })
-    //     .catch(error => {
-    //       res.status(500).send(`Error deleting user: ${error.message}`);
-    //     });
-    // });
-
-    // Start the Express server
     app.listen(port, () => {
       console.log(`Example app listening at http://localhost:${port}`);
     });
@@ -191,6 +203,13 @@ const startServer = async () => {
   } catch (error) {
     console.error(`Error connecting to MongoDB: ${error.message}`);
   }
+
+
 };
 
 startServer();
+
+
+
+  
+

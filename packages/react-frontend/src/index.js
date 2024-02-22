@@ -1,7 +1,6 @@
-// src/index.js
 import React from "react";
 import ReactDOMClient from "react-dom/client";
-import MyApp from "./MyApp";
+import MyApp from "./Entries.js";
 import "./index.css";
 
 const container = document.getElementById("root");
