@@ -1,10 +1,14 @@
 // backend.js
 import express from "express";
 import cors from "cors";
+import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import userServices from "./models/user-services.js";
 import bcrypt from "bcrypt";
+import authenticateToken from "./authMiddleware.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 const port = 8000;
 
@@ -12,6 +16,11 @@ app.use(cors());
 app.use(express.json());
 
 const saltRounds = 10;
+const secretKey = process.env.TOKEN_SECRET;
+
+function generateAccessToken(username) {
+  return jwt.sign({ username }, secretKey, { expiresIn: "3600s" });
+}
 
 const isStrongPassword = (password) => {
   if (!/[A-Z]/.test(password)) {
@@ -84,6 +93,34 @@ const startServer = async () => {
       }
     });
 
+    app.post("/api/createNewUser", async (req, res) => {
+      const { username } = req.body;
+
+      try {
+        // Find the user by username
+        const user = await userServices.findUserByName(username);
+
+        if (user.length > 0) {
+          // Generate a token using the username
+          const token = generateAccessToken(username);
+
+          // Set the token as an HttpOnly cookie
+          res.cookie("token", token, { httpOnly: true });
+
+          res.json({ success: true, token });
+        } else {
+          return res
+            .status(404)
+            .json({ success: false, error: "User not found" });
+        }
+      } catch (error) {
+        console.error("Error during token generation:", error);
+        res
+          .status(500)
+          .json({ success: false, error: "Internal Server Error" });
+      }
+    });
+
     app.post("/account/login", async (req, res) => {
       const { userid, password } = req.body;
     
@@ -93,14 +130,19 @@ const startServer = async () => {
         console.log("User from database:", user);
         if (user.length > 0) {
           const passwordMatch = await bcrypt.compare(password.trim(), user[0].password);
+          
           if (passwordMatch) {
-          // generating jwt token would be here
-            return res.json({success: true});
+            const token = generateAccessToken(userid);
+            return res.json({ success: true, token });
           } else {
             return res
               .status(401)
               .json({ success: false, error: "Invalid username or password" });
           }
+        } else {
+          return res
+            .status(401)
+            .json({ success: false, error: "Invalid username or password" });
         }
       } catch (error) {
         console.error("Error during login:", error);
@@ -126,62 +168,19 @@ const startServer = async () => {
       }
     });
 
-    // app.get("/user", (req, res) => {
-    //   const name = req.query.name;
-    //   const job = req.query.job;
+    app.get("/api/contacts", authenticateToken, async (req, res) => {
+      try {
+        // Retrieve contacts from the database using the new function
+        const contacts = await userServices.getAllContacts();
 
-    //   userServices.getUsers(name, job)
-    //     .then(user => {
-    //       res.send({ user_list: user });
-    //     })
-    //     .catch(error => {
-    //       res.status(500).send(`Error retrieving users: ${error.message}`);
-    //     });
-    // });
-
-    // app.get("/user/:id", (req, res) => {
-    //   const id = req.params.id;
-
-    //   userServices.findUserById(id)
-    //     .then(user => {
-    //       if (!user) {
-    //         res.status(404).send("Resource not found.");
-    //       } else {
-    //         res.send(user);
-    //       }
-    //     })
-    //     .catch(error => {
-    //       res.status(500).send(`Error retrieving user: ${error.message}`);
-    //     });
-    // });
-
-    // app.post("/user", (req, res) => {
-    //   const userToAdd = req.body;
-
-    //   userServices.addUser(userToAdd)
-    //     .then(addedUser => {
-    //       res.status(201).send(addedUser);
-    //     })
-    //     .catch(error => {
-    //       res.status(500).send(`Error adding user: ${error.message}`);
-    //     });
-    // });
-
-    // app.delete("/user/:id", (req, res) => {
-    //   const id = req.params.id;
-
-    //   userServices.deleteUser(id)
-    //     .then(deletedUser => {
-    //       if (!deletedUser) {
-    //         res.status(404).send("Resource not found.");
-    //       } else {
-    //         res.status(204).send(); // Respond with a 204 status code (No Content)
-    //       }
-    //     })
-    //     .catch(error => {
-    //       res.status(500).send(`Error deleting user: ${error.message}`);
-    //     });
-    // });
+        res.json({ success: true, contacts });
+      } catch (error) {
+        console.error("Error fetching contacts:", error);
+        res
+          .status(500)
+          .json({ success: false, error: "Internal Server Error" });
+      }
+    });
 
     // Start the Express server
     app.listen(port, () => {

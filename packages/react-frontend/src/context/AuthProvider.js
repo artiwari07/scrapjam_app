@@ -24,11 +24,11 @@ export const AuthProvider = ({ children }) => {
     token: cookies.token || null,
   });
 
-  const handleLogin = async () => {
+  const handleLogin = async (username, password) => { // Pass username and password as arguments
     try {
       const response = await axios.post("http://localhost:8000/account/login", {
-        userid: value.username,
-        password: value.password,
+        userid: username,
+        password: password,
       });
 
       if (response.data.success) {
@@ -55,13 +55,11 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     // Clear the token from cookies
     removeCookie("token", { path: "/" });
-    navigate("/home");
+    // navigate("/home");
   };
 
   const value = {
     token: state.token,
-    username: "",
-    password: "",
     onLogin: handleLogin,
     onLogout: handleLogout,
   };

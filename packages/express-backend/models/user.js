@@ -12,6 +12,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    token: {
+      type: String,
+      trim: true,
+    },
   },
   { collection: "scrapjam_users" }
 );
