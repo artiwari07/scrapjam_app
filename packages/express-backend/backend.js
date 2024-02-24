@@ -3,10 +3,12 @@ import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 import userServices from "./models/user-services.js";
 import bcrypt from "bcrypt";
+import entryServices from "./models/entry-services.js";
 import authenticateToken from "./authMiddleware.js";
-import dotenv from "dotenv";
+
 
 dotenv.config();
 const app = express();
@@ -168,6 +170,7 @@ const startServer = async () => {
       }
     });
 
+
     app.get("/api/contacts", authenticateToken, async (req, res) => {
       try {
         // Retrieve contacts from the database using the new function
@@ -182,14 +185,76 @@ const startServer = async () => {
       }
     });
 
-    // Start the Express server
+    app.delete("/entries/:id", (req, res) => {
+      const id = req.params["id"];
+      
+      entryServices.deleteEntryById(id)
+      .then(entry => {
+      if (entry) {
+        res.status(204).send();
+        }
+        else{
+          res.status(404).send("Resource not found.")
+        }
+      })
+      .catch(error => {
+        res.status(500).send(`Error deleting entry: ${error.message}`);
+      });
+    });
+
+  //get all entriers
+    app.get("/entries", async (req, res) => {
+      const name = req.query["name"];
+      const date = req.query["date"];
+      try {
+        const result = await entryServices.getEntries(name, date);
+        res.send({ entries_list: result });
+      } catch (error) {
+        console.log(error);
+        res.status(500).send("An error ocurred in the server.");
+      }
+    });
+
+  app.get("/entries", (req, res) => {
+      const name = req.query.name;
+      entryServices.findEntryByName(name)
+    .then(entry => {
+      if (!entry) {
+        res.status(404).send("Resource not found.");
+      } else {
+        res.send({ entries_list: result });}
+      })
+      .catch(error => {
+        res.status(500).send(`Error retrieving entry: ${error.message}`);
+      });
+    });
+   
+  //get user by id
+  app.get("/entries/:id", (req, res) => {
+    const id = req.params["id"]; //or req.params.id
+    entryServices.findEntryById(id)
+    .then(entry => {
+      if (!entry) {
+        res.status(404).send("Resource not found.");
+      } else {
+        res.send({ entries_list: result });}
+      })
+      .catch(error => {
+        res.status(500).send(`Error retrieving entry: ${error.message}`);
+      });
+    });
+
     app.listen(port, () => {
       console.log(`Example app listening at http://localhost:${port}`);
     });
-
   } catch (error) {
     console.error(`Error connecting to MongoDB: ${error.message}`);
   }
 };
 
 startServer();
+
+
+
+  
+

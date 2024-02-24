@@ -1,0 +1,11 @@
+.logout-button {
+    background-color: lightcoral; /* Light red color */
+    color: white; /* Text color */
+    padding: 10px 15px; /* Adjust padding for positioning */
+    margin: 10px; /* Adjust margin for spacing */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; /* Adjust font size */
+    /* Add any additional styles as needed */
+  }
