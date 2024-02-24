@@ -24,11 +24,11 @@ export const AuthProvider = ({ children }) => {
     token: cookies.token || null,
   });
 
-  const handleLogin = async (username, password) => { // Pass username and password as arguments
+  const handleLogin = async () => {
     try {
       const response = await axios.post("http://localhost:8000/account/login", {
-        userid: username,
-        password: password,
+        userid: value.username,
+        password: value.password,
       });
 
       if (response.data.success) {
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
         dispatch({ type: "SET_TOKEN", payload: token });
 
         console.log("Login successful");
-        navigate("/landing");
+        navigate("/entries");
         console.log("After navigation");
       } else {
         alert("Invalid username or password. Please try again.");
@@ -55,11 +55,13 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     // Clear the token from cookies
     removeCookie("token", { path: "/" });
-    // navigate("/home");
+    navigate("/login");
   };
 
   const value = {
     token: state.token,
+    username: "",
+    password: "",
     onLogin: handleLogin,
     onLogout: handleLogout,
   };

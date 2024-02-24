@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from "./context/AuthProvider";
-import axios from 'axios';
 import './Login.css';
 
 export const Login = () => {
@@ -11,24 +10,12 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { value } = useAuth();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      await value.onLogin(username, password);
-      // The navigation logic should be handled within onLogin, 
-      // so you don't need to manually navigate here.
-    } catch (error) {
-      // Handle errors if needed
-      console.error(error);
-      setLoginError("An error occurred during login. Please try again.");
-    }
-  };
-
-  const handleLogout = () => {
-    value.onLogout();
-  };
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      value.username = username;
+      value.password = password;
+      return value.onLogin();
+  }
 
   const handleCreateAccount = () => {
     // Navigate to the registration page
@@ -58,15 +45,11 @@ export const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
+  
         <button className="login-button" onClick={handleSubmit}>
           Login
         </button>
         {loginError && <p>{loginError}</p>}
-        <button className="logout-button" onClick={handleLogout}>
-          Logout
-        </button>
-
         <button className="create-account-button" onClick={handleCreateAccount}>
           Create Account
         </button>
