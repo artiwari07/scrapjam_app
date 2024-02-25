@@ -2,18 +2,12 @@ import React, {useState, useEffect} from 'react';
 import Table from "./Table";
 import Form from "./Form";
 
-
-
-
-function Entries() {
-
-
+export const Entries = () =>  {
   const [entries, setEntries] = 
       useState([]);
 
-
   function deleteEntry(id){
-    const promise = fetch(`Http://localhost:8000/entries/${id}`, {
+    const promise = fetch(`http://localhost:8000/entries/${id}`, {
       method: "DELETE",
     });
 
@@ -35,12 +29,12 @@ function Entries() {
         }
 
   function fetchEntries() {
-      const promise = fetch("http://localhost:8000/");
+      const promise = fetch("http://localhost:8000/entries");
       return promise;
     } 
   
   function postEntry(entry) {
-      const promise = fetch("Http://localhost:8000/entries", {
+      const promise = fetch("http://localhost:8000/entries", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,9 +44,6 @@ function Entries() {
   
       return promise;
     }
-
-
-
 
   useEffect(() => {
       fetchEntries()
@@ -72,22 +63,17 @@ function Entries() {
             console.log(error);
           })
     }
-    
-
 
     return (
-      
+
       <div className="container">
-      <h4 class = "left" >ScrapJam </h4>
-     
-      
+      <h4 className = "left" >ScrapJam </h4>
 
         <center>
           <h1>
           Entries
           </h1>
         </center>
-    
         
         {/* <PopUp updateList PopUp/> */}
         <Form handleSubmit={updateList} />
@@ -96,13 +82,8 @@ function Entries() {
           entryData={entries}
           removeEntry={removeOneEntry}
         />
-
       </div>
     );
-  }
+  };
 
-
-  export default Entries;
-  
-    
-
+export default Entries;

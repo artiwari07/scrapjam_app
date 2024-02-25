@@ -8,8 +8,6 @@ function Form(props) {
     date: "",
     id: ""
   });
-  
-  
 
   function handleChange(event) {
     const { name, value } = event.target;

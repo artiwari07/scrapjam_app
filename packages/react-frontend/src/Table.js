@@ -1,8 +1,5 @@
 import React from "react";
-
 import "reactjs-popup/dist/index.css";
-
-
 
 function TableHeader() {
     return (
@@ -15,8 +12,6 @@ function TableHeader() {
       </thead>
     );
   }
-  
-  
 
   function TableBody(props) {
     const rows = props.entryData.map((row, index) => {
@@ -25,8 +20,7 @@ function TableHeader() {
           <td>{row.name}</td>
           <td>{row.date}</td>
           <td>
-          
-                  
+
                       <button type="button" class="editButton">
                     
                   </button>
@@ -47,18 +41,14 @@ function TableHeader() {
      );
   }
 
-
   function Table(props) {
     return (
-
       <table>
-        
         <TableHeader />
         <TableBody
           entryData={props.entryData}
           removeEntry={props.removeEntry}
         />
-        
       </table>
     );
   }
