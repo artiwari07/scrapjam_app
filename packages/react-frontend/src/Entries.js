@@ -5,7 +5,7 @@ import Form from "./Form";
 
 
 
-function MyApp() {
+function Entries() {
 
 
   const [entries, setEntries] = 
@@ -77,9 +77,6 @@ function MyApp() {
 
     return (
       
-    
-      
-    
       <div className="container">
       <h4 class = "left" >ScrapJam </h4>
      
@@ -100,15 +97,12 @@ function MyApp() {
           removeEntry={removeOneEntry}
         />
 
-
-
-      
       </div>
     );
   }
 
 
-  export default MyApp;
+  export default Entries;
   
     
 
