@@ -32,8 +32,6 @@ export const Register = () => {
       .then((data) => {
         if (data.success) {
           // Registration successful
-          // You may perform additional actions here if needed
-
           // Navigate to the login page
           navigate('/login');
         } else {
