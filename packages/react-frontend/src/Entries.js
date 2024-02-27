@@ -7,7 +7,7 @@ export const Entries = () =>  {
       useState([]);
 
   function deleteEntry(id){
-    const promise = fetch(`http://localhost:8000/entries/${id}`, {
+    const promise = fetch(`https://localhost:8000/entries/${id}`, {
       method: "DELETE",
     });
 
@@ -29,12 +29,12 @@ export const Entries = () =>  {
         }
 
   function fetchEntries() {
-      const promise = fetch("http://localhost:8000/entries");
+      const promise = fetch("https://localhost:8000/entries");
       return promise;
     } 
   
   function postEntry(entry) {
-      const promise = fetch("http://localhost:8000/entries", {
+      const promise = fetch("https://localhost:8000/entries", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
