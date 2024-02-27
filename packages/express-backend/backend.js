@@ -246,24 +246,12 @@ const startServer = async () => {
       });
     });
 
-    https.createServer(
-      {
-        key: fs.readFileSync("./certs/key.pem"),
-        cert: fs.readFileSync("./certs/cert.pem"),
-      },
-      app
-    )
-    .listen(8000, () => {
-      console.log("server is runing at port 8000");
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
     });
-    } catch (error) {
-      console.error("Error connecting to MongoDB:", error);
-    }
-  };
-  
-  startServer();
+  } catch (error) {
+    console.error(`Error connecting to MongoDB: ${error.message}`);
+  }
+};
 
-
-
-  
-
+startServer();

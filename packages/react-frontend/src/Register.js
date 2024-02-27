@@ -17,7 +17,7 @@ export const Register = () => {
       return;
     }
 
-    fetch('https://localhost:8000/account/register', {
+    fetch('http://localhost:8000/account/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
