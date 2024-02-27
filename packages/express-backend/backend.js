@@ -4,6 +4,8 @@ import cors from "cors";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import https from "https";
+import fs from "fs";
 import userServices from "./models/user-services.js";
 import bcrypt from "bcrypt";
 import entryServices from "./models/entry-services.js";
@@ -244,15 +246,22 @@ const startServer = async () => {
       });
     });
 
-    app.listen(port, () => {
-      console.log(`Example app listening at http://localhost:${port}`);
+    https.createServer(
+      {
+        key: fs.readFileSync("./certs/key.pem"),
+        cert: fs.readFileSync("./certs/cert.pem"),
+      },
+      app
+    )
+    .listen(8000, () => {
+      console.log("server is runing at port 8000");
     });
-  } catch (error) {
-    console.error(`Error connecting to MongoDB: ${error.message}`);
-  }
-};
-
-startServer();
+    } catch (error) {
+      console.error("Error connecting to MongoDB:", error);
+    }
+  };
+  
+  startServer();
 
 
 
