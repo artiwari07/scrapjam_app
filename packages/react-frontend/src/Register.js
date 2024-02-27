@@ -17,7 +17,6 @@ export const Register = () => {
       return;
     }
 
-    // Perform the register API call
     fetch('https://localhost:8000/account/register', {
       method: 'POST',
       headers: {
