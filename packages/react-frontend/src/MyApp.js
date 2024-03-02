@@ -30,10 +30,10 @@ const MyApp = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} /> 
-        <Route path="/login" element={<Login />} />
-        <Route path="/landing" element={<Landing />} />
-        <Route path="/registration" element={<Register />} />
+        <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Register />} />
+          <Route path="/entries" element={<Entries />} />
       </Routes>
     </Router>
   );
