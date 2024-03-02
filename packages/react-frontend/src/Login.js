@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from "./context/AuthProvider";
 import './Login.css';
 
- export const Login = () => {
+export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState("");
@@ -25,7 +25,7 @@ import './Login.css';
   return (
     <div className="container">
       <div className="form-container">
-      <h1>Scrapjam</h1>
+        <h1>Scrapjam</h1>
         <label htmlFor="username" style={{ marginTop: '60px' }}>
           Username:
         </label>
@@ -35,7 +35,7 @@ import './Login.css';
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-  
+
         <label htmlFor="password" style={{ marginBottom: '10px' }}>
           Password:
         </label>
@@ -56,6 +56,6 @@ import './Login.css';
       </div>
     </div>
   );
- };
+};
 
 export default Login;

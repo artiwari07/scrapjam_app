@@ -17,7 +17,6 @@ export const Register = () => {
       return;
     }
 
-    // Perform the register API call
     fetch('http://localhost:8000/account/register', {
       method: 'POST',
       headers: {
@@ -32,8 +31,6 @@ export const Register = () => {
       .then((data) => {
         if (data.success) {
           // Registration successful
-          // You may perform additional actions here if needed
-
           // Navigate to the login page
           navigate('/login');
         } else {

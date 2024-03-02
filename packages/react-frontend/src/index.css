@@ -439,7 +439,9 @@
   }
   
   h4 {
+    
     font-size: 1.1rem;
+    padding: 2.2rem;
   }
   
   h5 {
@@ -568,7 +570,7 @@
     padding: 0 1rem;
   }
   
-  .container, .small-container, .medium-container {
+  .container1, .small-container, .medium-container {
     max-width: 1200px;
     padding: 0 1rem;
     margin-left: auto;

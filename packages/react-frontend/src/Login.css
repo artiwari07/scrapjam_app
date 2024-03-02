@@ -55,3 +55,19 @@ body {
   background: rgb(128, 105, 233);
   margin-bottom: 30px;
 }
+
+.logout-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ff6347; /* Tomato red background */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #d23f30; /* Darker red on hover */
+}

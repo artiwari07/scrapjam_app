@@ -66,8 +66,11 @@ export const Entries = () =>  {
 
     return (
 
-      <div className="container">
-      <h4 className = "left" >ScrapJam </h4>
+        
+      <div className="container1">
+        
+        <h1>  </h1>
+      <h4 >ScrapJam </h4>
 
         <center>
           <h1>
