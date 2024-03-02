@@ -209,7 +209,7 @@ const startServer = async () => {
       const name = req.query["name"];
       const date = req.query["date"];
       try {
-        const result = await entryServices.getEntries(name, date);
+        const result = await entryServices.getEntry(name, date);
         res.send({ entries_list: result });
       } catch (error) {
         console.log(error);
