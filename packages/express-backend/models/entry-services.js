@@ -10,7 +10,7 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-function getUsers(name) {
+function getEntry(name) {
   let promise;
   
   promise = findEntryByName(name);
@@ -40,7 +40,7 @@ function findEntryByName(name) {
 
 export default {
   addEntry,
-  getUsers,
+  getEntry,
   findEntryById,
   findEntryByName,
   deleteEntryById

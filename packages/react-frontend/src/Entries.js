@@ -71,7 +71,6 @@ export const Entries = () =>  {
         
         <h1>  </h1>
       <h4 >ScrapJam </h4>
-
         <center>
           <h1>
           Entries
