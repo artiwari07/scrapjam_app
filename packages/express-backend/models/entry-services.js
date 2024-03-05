@@ -8,7 +8,8 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .catch((error) => console.log(error));
+  .then(() => console.log("Successfully connected to MongoDB."))
+  .catch((error) => console.error("MongoDB connection error:", error));
 
 function getEntry(name) {
   let promise;
@@ -19,7 +20,7 @@ function getEntry(name) {
 }
 
 function findEntryById(id_) {
-  return entryModel.findById({id_ : id_});
+  return entryModel.findById(id_);
 }
 
 function addEntry(user) {
@@ -38,10 +39,21 @@ function findEntryByName(name) {
     
   }
 
-export default {
-  addEntry,
-  getEntry,
-  findEntryById,
-  findEntryByName,
-  deleteEntryById
-};
+  function getEntries(name) {
+    if (name) {
+      return findEntryByName(name);
+    } else {
+      return entryModel.find(); // Fetches all entries if no name is provided
+    }
+  }
+  
+  // Remember to export it
+  export default {
+    addEntry,
+    getUsers,
+    findEntryById,
+    findEntryByName,
+    deleteEntryById,
+    getEntries // Add this line to include it in the exported object
+  };
+  

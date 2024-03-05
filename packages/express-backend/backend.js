@@ -204,32 +204,27 @@ const startServer = async () => {
       });
     });
 
-  //get all entriers
-    app.get("/entries", async (req, res) => {
-      const name = req.query["name"];
-      const date = req.query["date"];
+    app.post("/entries", async (req, res) => {
       try {
-        const result = await entryServices.getEntry(name, date);
-        res.send({ entries_list: result });
+        const newEntry = await entryServices.addEntry(req.body);
+        res.status(201).json(newEntry);
       } catch (error) {
-        console.log(error);
-        res.status(500).send("An error ocurred in the server.");
+        console.error("Error adding new entry:", error);
+        res.status(500).json({ message: "Failed to add new entry", error: error.message });
       }
     });
+       
 
-  app.get("/entries", (req, res) => {
-      const name = req.query.name;
-      entryServices.findEntryByName(name)
-    .then(entry => {
-      if (!entry) {
-        res.status(404).send("Resource not found.");
-      } else {
-        res.send({ entries_list: result });}
-      })
-      .catch(error => {
-        res.status(500).send(`Error retrieving entry: ${error.message}`);
-      });
-    });
+    app.get("/entries", async (req, res) => {
+      try {
+        const { name } = req.query; // Assuming you're filtering by name for simplicity
+        const results = await entryServices.getEntries(name);
+        res.json({ entries_list: results });
+      } catch (error) {
+        console.error("Error fetching entries:", error);
+        res.status(500).send("An error occurred on the server.");
+      }
+    });    
    
   //get user by id
   app.get("/entries/:id", (req, res) => {

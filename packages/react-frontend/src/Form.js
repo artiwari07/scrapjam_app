@@ -18,7 +18,7 @@ function Form(props) {
 
   function submitForm() {
     props.handleSubmit(entry);
-    setEntry({ name: "", job: "" });
+    setEntry({ name: "", date:"", id: "" });
   }
   
 
