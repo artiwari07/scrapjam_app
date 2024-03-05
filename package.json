@@ -15,7 +15,11 @@
   "dependencies": {
     "create-react-app": "^5.0.1",
     "mongoose": "^8.1.1",
+    "re-resizable": "^6.9.11",
     "react-cookie": "^7.1.0",
+    "react-draggable": "^4.4.6",
+    "react-grid-layout": "^1.4.4",
+    "react-modal": "^3.16.1",
     "reactjs-popup": "^2.0.6"
   },
   "devDependencies": {
