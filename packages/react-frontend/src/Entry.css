@@ -1,0 +1,32 @@
+/* Entry.css */
+/* Entry.css */
+.centered-header {
+    justify-content: center;
+  }
+
+.centered-container2 {
+    position: relative;
+  }
+  
+.resizable-image {
+    width: 300px; /* Initial width */
+    height: 200px; /* Initial height */
+    border: 2px solid #ccc;
+    background-color: #eee;
+    position: absolute;
+    resize: both;
+    overflow: hidden;
+}
+  
+.resizable-image::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    cursor: se-resize; /* Resize cursor for the bottom right corner */
+}
+  
