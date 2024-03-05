@@ -11,7 +11,7 @@ mongoose
   .then(() => console.log("Successfully connected to MongoDB."))
   .catch((error) => console.error("MongoDB connection error:", error));
 
-function getEntry(name) {
+function getUsers(name) {
   let promise;
   
   promise = findEntryByName(name);
