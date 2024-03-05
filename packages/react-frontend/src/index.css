@@ -20,6 +20,14 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+
+ .grid-item {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
  html {
     line-height: 1.15;
     /* 1 */
@@ -568,7 +576,7 @@
     padding: 0 1rem;
   }
   
-  .container, .small-container, .medium-container {
+  .container1, .small-container, .medium-container {
     max-width: 1200px;
     padding: 0 1rem;
     margin-left: auto;
