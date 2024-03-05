@@ -30,15 +30,12 @@ const LogoutButton = () => {
 const MyApp = () => {
   return (
     <Router>
-      <AuthProvider>
-        <LogoutButton />
-        <Routes>
-          <Route path="/" element={<Login />} />
+      <Routes>
+        <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Register />} />
-          <Route path="/entries" element={<ProtectedRoute><Entries /></ProtectedRoute>} />
-        </Routes>
-      </AuthProvider>
+          <Route path="/entries" element={<Entries />} />
+      </Routes>
     </Router>
   );
 };

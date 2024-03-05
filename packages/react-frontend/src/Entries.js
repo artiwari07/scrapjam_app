@@ -1,89 +1,70 @@
-import React, {useState, useEffect} from 'react';
-import Table from "./Table";
+import React, { useState, useEffect } from 'react';
 import Form from "./Form";
+import { Responsive, WidthProvider } from 'react-grid-layout';
+const ResponsiveGridLayout = WidthProvider(Responsive);
 
-export const Entries = () =>  {
-  const [entries, setEntries] = 
-      useState([]);
-
-  function deleteEntry(id){
-    const promise = fetch(`http://localhost:8000/entries/${id}`, {
-      method: "DELETE",
-    });
-
-    return promise;
-  }
-
-  function removeOneEntry(id, index) {
-    deleteEntry(id)
-        .then((result) => {
-          if (result.status === 204) {
-            const updated = entries.filter((entry, i) => {
-              return i !== index;
-            });
-            setEntries(updated);
-          }})
-        .catch((error) => {
-            console.log(error);
-          })
-        }
-
-  function fetchEntries() {
-      const promise = fetch("http://localhost:8000/entries");
-      return promise;
-    } 
-  
-  function postEntry(entry) {
-      const promise = fetch("http://localhost:8000/entries", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(entry),
-      });
-  
-      return promise;
-    }
+export const Entries = () => {
+  const [entries, setEntries] = useState([]);
 
   useEffect(() => {
-      fetchEntries()
-        .then((res) => res.json())
-        .then((json) => setEntries(json["entries_list"]))
-        .catch((error) => { console.log(error); });
-      }, [] );
+    fetch("http://localhost:8000/entries")
+      .then((res) => res.json())
+      .then((json) => setEntries(json["entries_list"]))
+      .catch((error) => { console.log(error); });
+  }, []);
 
-  function updateList(entry) { 
-        postEntry(entry)
-        .then((result) => {
-          if (result.status === 201) {
-            return result.json();}})
-        .then((newEntry) =>{
-          setEntries([...entries, newEntry])})      
-        .catch((error) => {
-            console.log(error);
-          })
-    }
-
-    return (
-
-      <div className="container">
-      <h4 className = "left" >ScrapJam </h4>
-
-        <center>
-          <h1>
-          Entries
-          </h1>
-        </center>
-        
-        {/* <PopUp updateList PopUp/> */}
-        <Form handleSubmit={updateList} />
-
-        <Table
-          entryData={entries}
-          removeEntry={removeOneEntry}
-        />
-      </div>
-    );
+  const postEntry = (entry) => {
+    fetch("http://localhost:8000/entries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(entry),
+    })
+    .then((response) => response.json())
+    .then((newEntry) => {
+      setEntries(prevEntries => [...prevEntries, newEntry]);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
+
+  const generateLayout = () => {
+    return entries.map((entry, index) => ({
+      i: entry._id.toString(), // Ensuring we use the MongoDB `_id` field
+      x: (index * 2) % 12,
+      y: Math.floor(index / 6),
+      w: 2,
+      h: 2,
+    }));
+  };
+
+  return (
+    <div className="container">
+      <h4 className="left">ScrapJam</h4>
+      <center><h1>Entries</h1></center>
+      <Form handleSubmit={postEntry} />
+      
+      <div style={{ height: '500px', overflow: 'auto' }}>
+        <ResponsiveGridLayout
+          className="layout"
+          layouts={{ lg: generateLayout() }}
+          breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+          cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+        >
+          {entries.map((entry) => (
+            <div key={entry._id} className="grid-item">
+              <div>
+                <strong>Name:</strong> {entry.name}<br/>
+                <strong>Date:</strong> {entry.date}
+              </div>
+            </div>
+          ))}
+        </ResponsiveGridLayout>
+      </div>
+    </div>
+  );
+};
 
 export default Entries;
