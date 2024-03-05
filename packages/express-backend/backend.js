@@ -4,8 +4,6 @@ import cors from "cors";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import https from "https";
-import fs from "fs";
 import userServices from "./models/user-services.js";
 import bcrypt from "bcrypt";
 import entryServices from "./models/entry-services.js";
@@ -233,7 +231,7 @@ const startServer = async () => {
    
   //get user by id
   app.get("/entries/:id", (req, res) => {
-    const id = req.params["id"]; //or req.params.id
+    const id = req.params["id"];
     entryServices.findEntryById(id)
     .then(entry => {
       if (!entry) {
