@@ -2,8 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #6a5acd; /* Darker purple background */
-  color: white;
+   background-color: #6a5acd; /*Darker purple background */
+  /* color:rgb(160, 134, 70); */
 }
 
 .container {
@@ -14,15 +14,16 @@ body {
 }
 
 .form-container {
-  background-color: #ae77ae; /* Pale purple window */
-  padding: 20px;
-  border-radius: 90px;
+    /* background-color: #f8f3f8;Pale purple window  */
+  padding: 50px;
+  border-radius: 10px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
   width: 400%; /* Adjust the width as needed */
   max-width: 900px;
   height: 400%; /* Adjust the width as needed */
-  max-height: 500px; /* Set a max-width to prevent it from becoming too wide */
+  max-height: 600px; /* Set a max-width to prevent it from becoming too wide */
+  border: 30px solid rgb(219,155,100);
 }
 
 .form-container input {
@@ -52,7 +53,7 @@ body {
 }
 
 .create-account-button {
-  background: rgb(128, 105, 233);
+  /* background: rgb(128, 105, 233); */
   margin-bottom: 30px;
 }
 
