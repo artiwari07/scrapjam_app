@@ -41,7 +41,7 @@ export const Entries = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container1">
       <h4 className="left">ScrapJam</h4>
       <center><h1>Entries</h1></center>
       <Form handleSubmit={postEntry} />
