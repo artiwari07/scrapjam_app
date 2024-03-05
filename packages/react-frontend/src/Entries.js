@@ -40,6 +40,8 @@ export const Entries = () => {
     }));
   };
 
+  // comment
+
   return (
     <div className="container1">
       <h4 className="left">ScrapJam</h4>
