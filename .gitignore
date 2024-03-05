@@ -2,8 +2,5 @@
 expressjs-backend/node_modules
 expressjs-backend/.env
 react-frontend/node_modules
-react-frontend/reactcert/cert.pem
-react-frontend/reactcert/key.pem
-expressjs-backend/certs/key.pem
-expressjs-backend/certs/cert.pem
+
 .env
