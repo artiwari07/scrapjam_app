@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Form from "./Form";
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import { useNavigate } from 'react-router-dom';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("http://localhost:8000/entries")
       .then((res) => res.json())
@@ -39,7 +40,12 @@ export const Entries = () => {
       h: 2,
     }));
   };
-
+  const handleEdit = (event, entryId) => {
+    event.preventDefault();
+    event.stopPropagation();
+    navigate(`/entry/${entryId}`);
+  };
+  
   // comment
 
   return (
@@ -54,12 +60,14 @@ export const Entries = () => {
           layouts={{ lg: generateLayout() }}
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+          isDraggable={false}
         >
           {entries.map((entry) => (
             <div key={entry._id} className="grid-item">
               <div>
                 <strong>Name:</strong> {entry.name}<br/>
                 <strong>Date:</strong> {entry.date}
+                <button onClick={(event) => handleEdit(event, entry._id)}>Edit</button>
               </div>
             </div>
           ))}

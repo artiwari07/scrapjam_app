@@ -32,10 +32,10 @@ const MyApp = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Register />} />
-          <Route path="/entries" element={<Entries />} />
-          <Route path="/entry" element={<Entry />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Register />} />
+        <Route path="/entries" element={<Entries />} />
+        <Route path="/entry/:id" element={<Entry />} />
       </Routes>
     </Router>
   );
