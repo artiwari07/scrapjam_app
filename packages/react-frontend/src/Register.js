@@ -53,7 +53,7 @@ export const Register = () => {
       <div className="form-container">
       <h1>Scrapjam</h1>
         <input
-          type="text"
+          type="text" 
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
