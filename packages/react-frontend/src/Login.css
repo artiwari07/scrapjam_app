@@ -1,42 +1,67 @@
-body {
+ 
+ /* body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #6a5acd; /* Darker purple background */
-  color: white;
+  background-color: #6a5acd; Darker purple background 
+  color:rgb(160, 134, 70); 
+} */
+
+.bg-login {
+  /*background-color: #c2b9ff;  Darker purple background*/
+  background-color: #FEFBF9;
 }
 
-.container {
+.header-scrapjam {
+  /* text-align: center; */
+  font-family: "Century Gothic", Futura, sans-serif;
+  font-size: 70px;
+  color: #2c3e50;
+  
+  font-weight: bold;
+  margin-top: 40px;
+  /*color: white;*/
+}
+
+.container2 {
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 160vh; /* Adjust the height as needed, for example, 160% of the viewport height */
+  height: 80vh; /* Adjust the height as needed, for example, 160% of the viewport height */
 }
 
-.form-container {
-  background-color: #ae77ae; /* Pale purple window */
-  padding: 20px;
-  border-radius: 90px;
+.user-pass {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  text-align: left;
+  color: 'white';
+}
+
+.form-container2 {
+  background-color: #8CB9BD; /*   background-color: #76b390; Pale purple window */
+  padding: 0px;
+  border-radius: 10px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  width: 400%; /* Adjust the width as needed */
-  max-width: 900px;
-  height: 400%; /* Adjust the width as needed */
-  max-height: 500px; /* Set a max-width to prevent it from becoming too wide */
+  width: 50%; /* Adjust the width as needed */
+  height: 100%; /* Adjust the width as needed */ 
+
 }
 
-.form-container input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 30px;
-  margin-bottom: 300px;
+
+.form-container-input2 {
+  width: 40%;
+  margin-bottom: 200px;
   border: 30px solid rgb(0, 0, 0);
-  border-radius: 100px;
+  border-radius: 200px;
+  color: 'white';
 }
 
-.login-button,
-.create-account-button {
-  width: 100%;
+.login-button2,
+.create-account-button2 {
+  
+  width: 55%;
   max-width: 900px;
   padding: 10px;
   border: none;
@@ -45,22 +70,26 @@ body {
   margin-bottom: 50px;
 }
 
-.login-button {
-  background: rgb(176, 154, 196);
+.login-button2 {
+  background: #BBD686;
+  /*background: rgb(176, 154, 196);*/
+  color:#2B303A;
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
-.create-account-button {
-  background: rgb(128, 105, 233);
+.create-account-button2 {
+  background: #ECB159;
+  background: #fb6d9f;
+  color:#2B303A;
   margin-bottom: 30px;
 }
 
-.logout-button {
+.logout-button2 {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #ff6347; /* Tomato red background */
+  background: #B2675E; /* Tomato red background */
   color: white;
   padding: 10px;
   border: none;
@@ -68,6 +97,6 @@ body {
   cursor: pointer;
 }
 
-.logout-button:hover {
+.logout-button2:hover {
   background: #d23f30; /* Darker red on hover */
 }

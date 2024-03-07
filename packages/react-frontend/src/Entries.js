@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Form from "./Form";
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import Lottie from 'react-lottie-player'
+import seaweed from './seaweed.json';
+import './Entries.css';
+
 const ResponsiveGridLayout = WidthProvider(Responsive);
+
+
+
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
+
+  console.log(seaweed, "json");
 
   useEffect(() => {
     fetch("http://localhost:8000/entries")
@@ -46,6 +55,7 @@ export const Entries = () => {
     <div className="container1">
       <h4 className="left">ScrapJam</h4>
       <center><h1>Entries</h1></center>
+      
       <Form handleSubmit={postEntry} />
       
       <div style={{ height: '500px', overflow: 'auto' }}>
@@ -65,7 +75,31 @@ export const Entries = () => {
           ))}
         </ResponsiveGridLayout>
       </div>
+      
+
+      
+      <div className='footer' id='content'>
+      <div id='div-1'>
+         <Lottie
+     loop
+     animationData={seaweed}
+     play
+       style={{ width: 50, height: 50 }}
+      /></div>
+      <div id='div-2'>
+      <Lottie
+     loop
+     animationData={seaweed}
+     play
+       style={{ width: 50, height: 50 }}
+      /> </div>
+    
+       
+      </div>
+
     </div>
+
+    
   );
 };
 
