@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\"",
     "start": "cd packages/react-frontend && npm start"
   },
-  
   "author": "",
   "license": "ISC",
   "workspaces": [
@@ -27,6 +26,8 @@
     "reactjs-popup": "^2.0.6"
   },
   "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.0",
     "nodemon": "^3.0.3"
   }
 }
