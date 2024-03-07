@@ -228,7 +228,7 @@ const startServer = async () => {
    
   //get user by id
   app.get("/entries/:id", (req, res) => {
-    const id = req.params["id"];
+    const id = req.params["id"]; //or req.params.id
     entryServices.findEntryById(id)
     .then(entry => {
       if (!entry) {
