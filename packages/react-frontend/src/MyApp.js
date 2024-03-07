@@ -7,7 +7,9 @@ import Entries from './Entries';
 import { AuthProvider } from './context/AuthProvider';
 import { useAuth } from './context/AuthProvider';
 import { useNavigate } from "react-router-dom";
+import Entry from './Entry';
 import './LogoutButton.css';
+import ProtectedRoute  from "./utils/ProtectedRoute";
 
 const LogoutButton = () => {
   const { value } = useAuth(); // Ensure you are extracting the correct property
@@ -29,12 +31,16 @@ const LogoutButton = () => {
 const MyApp = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
+      <AuthProvider>
+        <LogoutButton />
+        <Routes>
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Register />} />
-          <Route path="/entries" element={<Entries />} />
-      </Routes>
+          <Route path="/entries" element={<ProtectedRoute><Entries /></ProtectedRoute>} />
+          <Route path="/entry" element={<ProtectedRoute><Entry /></ProtectedRoute>} />
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 };
