@@ -13,7 +13,7 @@ mongoose
 
 function getUsers(name) {
   let promise;
-  
+
   promise = findEntryByName(name);
 
   return promise;
@@ -33,27 +33,24 @@ function findEntryByName(name) {
   return entryModel.find({ name: name });
 }
 
+function deleteEntryById(id) {
+  return entryModel.findByIdAndDelete({ _id: id });
+}
 
-  function deleteEntryById(id) {
-    return entryModel.findByIdAndDelete({_id : id});
-    
+function getEntries(name) {
+  if (name) {
+    return findEntryByName(name);
+  } else {
+    return entryModel.find(); // Fetches all entries if no name is provided
   }
+}
 
-  function getEntries(name) {
-    if (name) {
-      return findEntryByName(name);
-    } else {
-      return entryModel.find(); // Fetches all entries if no name is provided
-    }
-  }
-  
-  // Remember to export it
-  export default {
-    addEntry,
-    getUsers,
-    findEntryById,
-    findEntryByName,
-    deleteEntryById,
-    getEntries // Add this line to include it in the exported object
-  };
-  
+// Remember to export it
+export default {
+  addEntry,
+  getUsers,
+  findEntryById,
+  findEntryByName,
+  deleteEntryById,
+  getEntries, // Add this line to include it in the exported object
+};

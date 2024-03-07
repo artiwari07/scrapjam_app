@@ -19,7 +19,7 @@ const authReducer = (state, action) => {
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-  
+
   const [state, dispatch] = useReducer(authReducer, {
     token: cookies.token || null,
   });

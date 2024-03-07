@@ -1,26 +1,26 @@
 // Register.js
 
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './Register.css';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import "./Register.css";
 
 export const Register = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
   const handleCreateAccount = () => {
     // Check if passwords match
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      alert("Passwords do not match");
       return;
     }
 
-    fetch('http://localhost:8000/account/register', {
-      method: 'POST',
+    fetch("http://localhost:8000/account/register", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username,
@@ -32,28 +32,28 @@ export const Register = () => {
         if (data.success) {
           // Registration successful
           // Navigate to the login page
-          navigate('/login');
+          navigate("/login");
         } else {
           // Registration failed
-          console.error('Registration failed:', data.error);
+          console.error("Registration failed:", data.error);
           // Display an error message to the user
-          alert('Registration failed: ' + data.error);
+          alert("Registration failed: " + data.error);
         }
       })
       .catch((error) => {
         // Handle network or other errors
-        console.error('Registration failed:', error);
+        console.error("Registration failed:", error);
         // Display an alert on network or other errors
-        alert('Registration failed: ' + error.message);
+        alert("Registration failed: " + error.message);
       });
   };
 
   return (
     <div className="container">
       <div className="form-container">
-      <h1>Scrapjam</h1>
+        <h1>Scrapjam</h1>
         <input
-          type="text" 
+          type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}

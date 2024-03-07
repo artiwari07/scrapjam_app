@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import userModel from "./user.js";
-import sanitize from 'mongo-sanitize';
+import sanitize from "mongo-sanitize";
 
 mongoose.set("debug", true);
 
@@ -19,8 +19,7 @@ function getUsers(username, job) {
     promise = findUserByName(username);
   } else if (job && !username) {
     promise = findUserByJob(job);
-  }
-  else if (job && username) {
+  } else if (job && username) {
     promise = findUserByNameAndJob(username, job);
   }
   return promise;
@@ -43,13 +42,12 @@ function isValidUsername(username) {
 
 async function findUserByName(username) {
   if (!isValidUsername(username)) {
-    throw new Error('Invalid username');
+    throw new Error("Invalid username");
   }
 
   let sanitizedUsername = sanitize(username);
   return await userModel.find({ username: sanitizedUsername });
 }
-
 
 function findUserByJob(job) {
   return userModel.find({ job: job });

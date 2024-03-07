@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema(
       trim: true,
     },
   },
-  { collection: "scrapjam_users" }
+  { collection: "scrapjam_users" },
 );
 
 const User = mongoose.model("User", UserSchema);

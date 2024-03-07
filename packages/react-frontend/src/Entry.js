@@ -1,11 +1,10 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 
 import "./Entry.css"; // Import the CSS file for styling
 import { Resizable } from "re-resizable";
 import Draggable from "react-draggable";
 
 import Modal from "react-modal";
-
 
 function Entry() {
   const [inputValue, setInputValue] = useState("");
@@ -14,24 +13,24 @@ function Entry() {
   const [textColor, setTextColor] = useState("#000000");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [colorType, setColorType] = useState("");
-  
-//   const Entry = () => {
-//     const { entryId } = useParams();
-//     const [entry, setEntry] = useState(null);
-  
-//     useEffect(() => {
-//       // Fetch individual entry details using entryId
-//       fetch(`http://localhost:8000/entries/${entryId}`)
-//         .then((res) => res.json())
-//         .then((json) => setEntry(json)) // Assuming the server returns entry details
-//         .catch((error) => {
-//           console.log(error);
-//         });
-//     }, [entryId]);
-  
-//     if (!entry) {
-//       return <div>Loading...</div>; // You can add a loading spinner or message
-//     }
+
+  //   const Entry = () => {
+  //     const { entryId } = useParams();
+  //     const [entry, setEntry] = useState(null);
+
+  //     useEffect(() => {
+  //       // Fetch individual entry details using entryId
+  //       fetch(`http://localhost:8000/entries/${entryId}`)
+  //         .then((res) => res.json())
+  //         .then((json) => setEntry(json)) // Assuming the server returns entry details
+  //         .catch((error) => {
+  //           console.log(error);
+  //         });
+  //     }, [entryId]);
+
+  //     if (!entry) {
+  //       return <div>Loading...</div>; // You can add a loading spinner or message
+  //     }
 
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
@@ -77,9 +76,8 @@ function Entry() {
 
   return (
     <div>
-        
       <div className="centered-header" contentEditable="true">
-      {/* <h1>Entry {entryId}</h1> */}
+        {/* <h1>Entry {entryId}</h1> */}
         <h1>Entry</h1>
       </div>
 
@@ -91,33 +89,35 @@ function Entry() {
         <div className="resizable-textarea">
           <button
             onClick={() => openModal("textarea")}
-            style={{ backgroundColor: "#B0B8F9", color: "black", marginRight: "10px" }}
+            style={{
+              backgroundColor: "#B0B8F9",
+              color: "black",
+              marginRight: "10px",
+            }}
           >
             Textbox Color
           </button>
           <button
             onClick={() => openModal("text")}
-            style={{ backgroundColor: "#B0B8F9", color: "black", marginRight: "10px" }}
+            style={{
+              backgroundColor: "#B0B8F9",
+              color: "black",
+              marginRight: "10px",
+            }}
           >
             Text Color
           </button>
           <button>
-          <label
-            htmlFor="imageUpload"
-            style={{color: "black"}}
-       
-          >
-            Image Upload
-          </label>
-          <input
-            type="file"
-            id="imageUpload"
-            accept="image/*"
-            style={{color: "rgb(50, 50, 50)"}}
-
-            onChange={handleImageUpload}
-          />
-          
+            <label htmlFor="imageUpload" style={{ color: "black" }}>
+              Image Upload
+            </label>
+            <input
+              type="file"
+              id="imageUpload"
+              accept="image/*"
+              style={{ color: "rgb(50, 50, 50)" }}
+              onChange={handleImageUpload}
+            />
           </button>
           <textarea
             value={inputValue}
