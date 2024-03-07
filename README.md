@@ -5,3 +5,5 @@ npm install react-textarea-autosize
 
 **Implements draggability**
 npm install react-draggable
+
+npm install react-lottie-player
