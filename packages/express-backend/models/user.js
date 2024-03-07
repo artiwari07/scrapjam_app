@@ -20,6 +20,6 @@ const UserSchema = new mongoose.Schema(
   { collection: "scrapjam_users" }
 );
 
-// const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
-export default mongoose.model("User", UserSchema);
+export default User;

@@ -19,6 +19,7 @@ app.use(express.json());
 
 const saltRounds = 10;
 const secretKey = process.env.TOKEN_SECRET;
+const users = [];
 
 function generateAccessToken(username) {
   return jwt.sign({ username }, secretKey, { expiresIn: "3600s" });
@@ -36,8 +37,8 @@ if (!/[a-z]/.test(password)) {
 if (!/\d/.test(password)) {
     return false;
 }
-if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)) {
-    return false;
+if (!/[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(password)) {
+  return false;
 }
 if (password.length < 8) {
     return false;
@@ -232,7 +233,7 @@ const startServer = async () => {
       if (!entry) {
         res.status(404).send("Resource not found.");
       } else {
-        res.send({ entries_list: result });}
+        res.send({ entries_list: results });}
       })
       .catch(error => {
         res.status(500).send(`Error retrieving entry: ${error.message}`);
