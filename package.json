@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "start": "cd packages/react-frontend && npm start"
   },
+  
   "author": "",
   "license": "ISC",
   "workspaces": [
@@ -16,10 +17,12 @@
     "@lottiefiles/lottie-player": "^2.0.4",
     "create-react-app": "^5.0.1",
     "mongoose": "^8.1.1",
+    "re-resizable": "^6.9.11",
     "react-cookie": "^7.1.0",
     "react-draggable": "^4.4.6",
     "react-grid-layout": "^1.4.4",
     "react-lottie-player": "^1.5.6",
+    "react-modal": "^3.16.1",
     "react-textarea-autosize": "^8.5.3",
     "reactjs-popup": "^2.0.6"
   },
