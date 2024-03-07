@@ -1,12 +1,52 @@
 /* Entry.css */
-/* Entry.css */
 .centered-header {
     justify-content: center;
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 15px;
   }
 
 .centered-container2 {
     position: relative;
+    justify-content: center;
+    text-align: center;
   }
+
+  .centered-container3 {
+    position: relative;
+    justify-content: center;
+    width: 500px;
+    height: 400px;
+  }
+
+.child {
+    width: 900px;
+    height: 500px;
+    background-color: textAreaColor;
+    position: absolute;
+    top: 90%;
+    left: 30%;
+    transform : trasnlate(-50%, -50%);
+    margin-top: 20px;
+}
+
+
+.resizable-text{
+    width: '50%';
+    display: 'flex';
+    height: '650px';
+    overflow-wrap: 'break-word';
+    text-align: 'left';
+    justify-content: 'center';
+    border: '2px solid #ccc';
+    font-size: '16px';
+    line-height: '2';
+    padding: '60px';
+    background-color: textAreaColor;
+    color: textColor;
+}
   
 .resizable-image {
     width: 300px; /* Initial width */

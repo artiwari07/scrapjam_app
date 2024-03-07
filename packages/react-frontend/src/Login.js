@@ -23,9 +23,10 @@ export const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <h1>Scrapjam</h1>
+    <div className="container2">
+      <div className="form-container2">
+        <div className="header-scrapjam"> Scrapjam</div>
+        <div className="user-pass">
         <label htmlFor="username" style={{ marginTop: '60px' }}>
           Username:
         </label>
@@ -45,12 +46,13 @@ export const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        </div>
   
-        <button className="login-button" onClick={handleSubmit}>
+        <button className="login-button2" onClick={handleSubmit}>
           Login
         </button>
         {loginError && <p>{loginError}</p>}
-        <button className="create-account-button" onClick={handleCreateAccount}>
+        <button className="create-account-button2" onClick={handleCreateAccount}>
           Create Account
         </button>
       </div>
