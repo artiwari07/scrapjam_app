@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 
 import "./Entry.css"; // Import the CSS file for styling
 import { Resizable } from "re-resizable";
@@ -6,7 +6,6 @@ import Draggable from "react-draggable";
 
 import Modal from "react-modal";
 
-import { useParams } from 'react-router-dom';
 
 function Entry() {
   const [inputValue, setInputValue] = useState("");
@@ -150,7 +149,7 @@ function Entry() {
               >
                 <img
                   src={imageSrc}
-                  alt={`Dropped Image ${index + 1}`}
+                //   alt={`Dropped Image ${index + 1}`}
                   style={{ width: "100%", height: "100%" }}
                 />
               </Resizable>
