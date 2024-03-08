@@ -3,13 +3,14 @@ import Form from "./Form";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import Lottie from "react-lottie-player";
 import seaweed from "./seaweed.json";
+import { useNavigate } from 'react-router-dom';
 import "./Entries.css";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
-
+  const navigate = useNavigate();
   console.log(seaweed, "json");
 
   useEffect(() => {
@@ -20,6 +21,12 @@ export const Entries = () => {
         console.log(error);
       });
   }, []);
+
+  const handleEdit = (event, entryId) => {
+    event.preventDefault();
+    event.stopPropagation();
+    navigate(`/entry/${entryId}`);
+  };
 
   const postEntry = (entry) => {
     fetch("http://localhost:8000/entries", {
@@ -65,6 +72,7 @@ export const Entries = () => {
           layouts={{ lg: generateLayout() }}
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+          isDraggable={false}
         >
           {entries.map((entry) => (
             <div key={entry._id} className="grid-item">
@@ -73,6 +81,7 @@ export const Entries = () => {
                 <br />
                 <strong>Date:</strong> {entry.date}
               </div>
+              <button onClick={(event) => handleEdit(event, entry._id)}>Edit</button>
             </div>
           ))}
         </ResponsiveGridLayout>

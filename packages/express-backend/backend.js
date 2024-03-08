@@ -228,21 +228,23 @@ const startServer = async () => {
 
     //get user by id
     app.get("/entries/:id", async (req, res) => {
-      const id = req.params["id"]; //or req.params.id
-      const results = await entryServices.getEntries(name);
-      entryServices
-        .findEntryById(id)
-        .then((entry) => {
-          if (!entry) {
-            res.status(404).send("Resource not found.");
-          } else {
-            res.send({ entries_list: results });
-          }
-        })
-        .catch((error) => {
-          res.status(500).send(`Error retrieving entry: ${error.message}`);
-        });
+      const { id } = req.params; // Correctly capture the 'id' route parameter.
+      // If you're trying to use a 'name' query parameter instead, you should access it using req.query.name
+    
+      try {
+        // Assuming you meant to fetch an entry by its ID:
+        const entry = await entryServices.findEntryById(id);
+        if (!entry) {
+          return res.status(404).send("Resource not found.");
+        } else {
+          return res.send(entry);
+        }
+      } catch (error) {
+        console.error(`Error retrieving entry: ${error.message}`);
+        return res.status(500).send(`Error retrieving entry: ${error.message}`);
+      }
     });
+    
 
     app.listen(port, () => {
       console.log(`Example app listening at http://localhost:${port}`);

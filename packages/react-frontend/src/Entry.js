@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import "./Entry.css"; // Import the CSS file for styling
 import { Resizable } from "re-resizable";
 import Draggable from "react-draggable";
-
+import { useParams } from 'react-router-dom';
 import Modal from "react-modal";
+import { useNavigate } from 'react-router-dom';
 
 function Entry() {
   const [inputValue, setInputValue] = useState("");
@@ -13,7 +13,7 @@ function Entry() {
   const [textColor, setTextColor] = useState("#000000");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [colorType, setColorType] = useState("");
-
+  const navigate = useNavigate();
   //   const Entry = () => {
   //     const { entryId } = useParams();
   //     const [entry, setEntry] = useState(null);
@@ -31,7 +31,7 @@ function Entry() {
   //     if (!entry) {
   //       return <div>Loading...</div>; // You can add a loading spinner or message
   //     }
-
+  const { id } = useParams();
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
 
@@ -42,6 +42,10 @@ function Entry() {
       };
       reader.readAsDataURL(file);
     });
+  };
+
+  const handleBackToEntries = () => {
+    navigate('/entries');
   };
 
   const handleChange = (event) => {
@@ -74,13 +78,31 @@ function Entry() {
     closeModal();
   };
 
+  useEffect(() => {
+    // Fetch the specific entry data using the id
+    fetch(`http://localhost:8000/entries/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.entries_list) {
+                const entry = data.entries_list;
+                // Assuming 'name' and 'date' fields for this example
+                setInputValue(entry.name || "");
+                // Add more fields as per your entry model
+                // For example: setImageSrcs(entry.images || []);
+            }
+        })
+        .catch(error => console.error("Failed to fetch entry:", error));
+  }, [id]); // Effect dependencies, re-run if ID changes
+  
   return (
     <div>
       <div className="centered-header" contentEditable="true">
         {/* <h1>Entry {entryId}</h1> */}
         <h1>Entry</h1>
       </div>
-
+      <div>
+        <button onClick={handleBackToEntries}>Back to Entries</button>
+      </div>
       <div
         className="centered-container2"
         onDrop={(event) => event.preventDefault()}

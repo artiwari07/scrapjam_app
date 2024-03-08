@@ -45,7 +45,7 @@ const MyApp = () => {
             }
           />
           <Route
-            path="/entry"
+            path="/entry/:id"
             element={
               <ProtectedRoute>
                 <Entry />
