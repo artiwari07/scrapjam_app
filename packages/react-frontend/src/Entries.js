@@ -3,7 +3,7 @@ import Form from "./Form";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import Lottie from "react-lottie-player";
 import seaweed from "./seaweed.json";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "./Entries.css";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -81,7 +81,9 @@ export const Entries = () => {
                 <br />
                 <strong>Date:</strong> {entry.date}
               </div>
-              <button onClick={(event) => handleEdit(event, entry._id)}>Edit</button>
+              <button onClick={(event) => handleEdit(event, entry._id)}>
+                Edit
+              </button>
             </div>
           ))}
         </ResponsiveGridLayout>
