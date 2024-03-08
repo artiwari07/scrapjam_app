@@ -4,18 +4,11 @@ import sanitize from "mongo-sanitize";
 
 mongoose.set("debug", true);
 
-mongoose
-  .connect("mongodb://localhost:27017/scrapjam", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .catch((error) => console.log(error));
-
 function getUsers(username, job) {
   let promise;
-  if (name === undefined && job === undefined) {
+  if (username === undefined && job === undefined) {
     promise = userModel.find();
-  } else if (name && !job) {
+  } else if (username && !job) {
     promise = findUserByName(username);
   } else if (job && !username) {
     promise = findUserByJob(job);

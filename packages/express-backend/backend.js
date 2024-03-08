@@ -47,7 +47,7 @@ const isStrongPassword = (password) => {
 
 const startServer = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/scrapjam", {
+    await mongoose.connect(process.env.MONGODB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
