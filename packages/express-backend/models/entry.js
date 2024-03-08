@@ -11,10 +11,9 @@ const EntrySchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-    
     },
   },
-  { collection: "entries_list" }
+  { collection: "entries_list" },
 );
 
 const Entry = mongoose.model("Entry", EntrySchema);

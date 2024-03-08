@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Form from "./Form";
-import { Responsive, WidthProvider } from 'react-grid-layout';
-import Lottie from 'react-lottie-player'
-import seaweed from './seaweed.json';
-import './Entries.css';
+import { Responsive, WidthProvider } from "react-grid-layout";
+import Lottie from "react-lottie-player";
+import seaweed from "./seaweed.json";
+import "./Entries.css";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
-
-
-
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
@@ -19,7 +16,9 @@ export const Entries = () => {
     fetch("http://localhost:8000/entries")
       .then((res) => res.json())
       .then((json) => setEntries(json["entries_list"]))
-      .catch((error) => { console.log(error); });
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   const postEntry = (entry) => {
@@ -30,13 +29,13 @@ export const Entries = () => {
       },
       body: JSON.stringify(entry),
     })
-    .then((response) => response.json())
-    .then((newEntry) => {
-      setEntries(prevEntries => [...prevEntries, newEntry]);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => response.json())
+      .then((newEntry) => {
+        setEntries((prevEntries) => [...prevEntries, newEntry]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const generateLayout = () => {
@@ -54,11 +53,13 @@ export const Entries = () => {
   return (
     <div className="container1">
       <h4 className="left">ScrapJam</h4>
-      <center><h1>Entries</h1></center>
-      
+      <center>
+        <h1>Entries</h1>
+      </center>
+
       <Form handleSubmit={postEntry} />
-      
-      <div style={{ height: '500px', overflow: 'auto' }}>
+
+      <div style={{ height: "500px", overflow: "auto" }}>
         <ResponsiveGridLayout
           className="layout"
           layouts={{ lg: generateLayout() }}
@@ -68,38 +69,34 @@ export const Entries = () => {
           {entries.map((entry) => (
             <div key={entry._id} className="grid-item">
               <div>
-                <strong>Name:</strong> {entry.name}<br/>
+                <strong>Name:</strong> {entry.name}
+                <br />
                 <strong>Date:</strong> {entry.date}
               </div>
             </div>
           ))}
         </ResponsiveGridLayout>
       </div>
-      
 
-      
-      <div className='footer' id='content'>
-      <div id='div-1'>
-         <Lottie
-     loop
-     animationData={seaweed}
-     play
-       style={{ width: 50, height: 50 }}
-      /></div>
-      <div id='div-2'>
-      <Lottie
-     loop
-     animationData={seaweed}
-     play
-       style={{ width: 50, height: 50 }}
-      /> </div>
-    
-       
+      <div className="footer" id="content">
+        <div id="div-1">
+          <Lottie
+            loop
+            animationData={seaweed}
+            play
+            style={{ width: 50, height: 50 }}
+          />
+        </div>
+        <div id="div-2">
+          <Lottie
+            loop
+            animationData={seaweed}
+            play
+            style={{ width: 50, height: 50 }}
+          />{" "}
+        </div>
       </div>
-
     </div>
-
-    
   );
 };
 

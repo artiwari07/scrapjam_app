@@ -9,7 +9,6 @@ import bcrypt from "bcrypt";
 import entryServices from "./models/entry-services.js";
 import authenticateToken from "./authMiddleware.js";
 
-
 dotenv.config();
 const app = express();
 const port = 8000;
@@ -29,22 +28,21 @@ const isStrongPassword = (password) => {
   if (!/[A-Z]/.test(password)) {
     console.log("Failed capital");
     return false;
-}
-if (!/[a-z]/.test(password)) {
-  
+  }
+  if (!/[a-z]/.test(password)) {
     return false;
-}
-if (!/\d/.test(password)) {
+  }
+  if (!/\d/.test(password)) {
     return false;
-}
-if (!/[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(password)) {
-  return false;
-}
-if (password.length < 8) {
+  }
+  if (!/[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(password)) {
     return false;
-}
+  }
+  if (password.length < 8) {
+    return false;
+  }
 
-return true;
+  return true;
 };
 
 const startServer = async () => {
@@ -66,13 +64,13 @@ const startServer = async () => {
       try {
         // Check if the username is already taken
         const existingUser = await userServices.findUserByName(username);
-  
+
         if (existingUser.length > 0) {
           return res
             .status(400)
             .json({ success: false, error: "Username already taken" });
         }
-  
+
         // Validate the password
         if (!isStrongPassword(password)) {
           return res.status(400).json({
@@ -81,7 +79,7 @@ const startServer = async () => {
               "Password must have at least one capital letter, one lowercase letter, one number, and one special character.",
           });
         }
-  
+
         // Hash the password and username before storing it in the database
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         // Create a new user in the database with the hashed username and password
@@ -126,14 +124,17 @@ const startServer = async () => {
 
     app.post("/account/login", async (req, res) => {
       const { userid, password } = req.body;
-    
+
       try {
         console.log("Login attempt with username:", userid);
         const user = await userServices.findUserByName(userid);
         console.log("User from database:", user);
         if (user.length > 0) {
-          const passwordMatch = await bcrypt.compare(password.trim(), user[0].password);
-          
+          const passwordMatch = await bcrypt.compare(
+            password.trim(),
+            user[0].password,
+          );
+
           if (passwordMatch) {
             const token = generateAccessToken(userid);
             return res.json({ success: true, token });
@@ -171,7 +172,6 @@ const startServer = async () => {
       }
     });
 
-
     app.get("/api/contacts", authenticateToken, async (req, res) => {
       try {
         // Retrieve contacts from the database using the new function
@@ -188,19 +188,19 @@ const startServer = async () => {
 
     app.delete("/entries/:id", (req, res) => {
       const id = req.params["id"];
-      
-      entryServices.deleteEntryById(id)
-      .then(entry => {
-      if (entry) {
-        res.status(204).send();
-        }
-        else{
-          res.status(404).send("Resource not found.")
-        }
-      })
-      .catch(error => {
-        res.status(500).send(`Error deleting entry: ${error.message}`);
-      });
+
+      entryServices
+        .deleteEntryById(id)
+        .then((entry) => {
+          if (entry) {
+            res.status(204).send();
+          } else {
+            res.status(404).send("Resource not found.");
+          }
+        })
+        .catch((error) => {
+          res.status(500).send(`Error deleting entry: ${error.message}`);
+        });
     });
 
     app.post("/entries", async (req, res) => {
@@ -209,10 +209,11 @@ const startServer = async () => {
         res.status(201).json(newEntry);
       } catch (error) {
         console.error("Error adding new entry:", error);
-        res.status(500).json({ message: "Failed to add new entry", error: error.message });
+        res
+          .status(500)
+          .json({ message: "Failed to add new entry", error: error.message });
       }
     });
-       
 
     app.get("/entries", async (req, res) => {
       try {
@@ -223,22 +224,24 @@ const startServer = async () => {
         console.error("Error fetching entries:", error);
         res.status(500).send("An error occurred on the server.");
       }
-    });    
-   
-  //get user by id
-  app.get("/entries/:id", async (req, res) => {
-    const id = req.params["id"]; //or req.params.id
-    const results = await entryServices.getEntries(name);
-    entryServices.findEntryById(id)
-    .then(entry => {
-      if (!entry) {
-        res.status(404).send("Resource not found.");
-      } else {
-        res.send({ entries_list: results });}
-      })
-      .catch(error => {
-        res.status(500).send(`Error retrieving entry: ${error.message}`);
-      });
+    });
+
+    //get user by id
+    app.get("/entries/:id", async (req, res) => {
+      const id = req.params["id"]; //or req.params.id
+      const results = await entryServices.getEntries(name);
+      entryServices
+        .findEntryById(id)
+        .then((entry) => {
+          if (!entry) {
+            res.status(404).send("Resource not found.");
+          } else {
+            res.send({ entries_list: results });
+          }
+        })
+        .catch((error) => {
+          res.status(500).send(`Error retrieving entry: ${error.message}`);
+        });
     });
 
     app.listen(port, () => {
