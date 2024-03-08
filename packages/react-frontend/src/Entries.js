@@ -14,7 +14,7 @@ export const Entries = () => {
   console.log(seaweed, "json");
 
   useEffect(() => {
-    fetch("http://localhost:8000/entries")
+    fetch("https://scrapjam.azurewebsites.net/entries")
       .then((res) => res.json())
       .then((json) => setEntries(json["entries_list"]))
       .catch((error) => {
@@ -29,7 +29,7 @@ export const Entries = () => {
   };
 
   const postEntry = (entry) => {
-    fetch("http://localhost:8000/entries", {
+    fetch("https://scrapjam.azurewebsites.net/entries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
