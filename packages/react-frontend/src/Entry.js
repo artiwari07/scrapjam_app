@@ -80,7 +80,7 @@ function Entry() {
 
   useEffect(() => {
     // Fetch the specific entry data using the id
-    fetch(`http://localhost:8000/entries/${id}`)
+    fetch(`https://scrapjam.azurewebsites.net/entries/${id}`)
         .then(res => res.json())
         .then(data => {
             if (data.entries_list) {
