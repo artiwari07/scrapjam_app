@@ -230,7 +230,7 @@ const startServer = async () => {
     app.get("/entries/:id", async (req, res) => {
       const { id } = req.params; // Correctly capture the 'id' route parameter.
       // If you're trying to use a 'name' query parameter instead, you should access it using req.query.name
-    
+
       try {
         // Assuming you meant to fetch an entry by its ID:
         const entry = await entryServices.findEntryById(id);
@@ -244,7 +244,6 @@ const startServer = async () => {
         return res.status(500).send(`Error retrieving entry: ${error.message}`);
       }
     });
-    
 
     app.listen(process.env.PORT || port, () => {
       console.log("REST API is listening.");

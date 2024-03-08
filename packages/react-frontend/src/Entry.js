@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Entry.css"; // Import the CSS file for styling
 import { Resizable } from "re-resizable";
 import Draggable from "react-draggable";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import Modal from "react-modal";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Entry() {
   const [inputValue, setInputValue] = useState("");
@@ -45,7 +45,7 @@ function Entry() {
   };
 
   const handleBackToEntries = () => {
-    navigate('/entries');
+    navigate("/entries");
   };
 
   const handleChange = (event) => {
@@ -81,19 +81,19 @@ function Entry() {
   useEffect(() => {
     // Fetch the specific entry data using the id
     fetch(`https://scrapjam.azurewebsites.net/entries/${id}`)
-        .then(res => res.json())
-        .then(data => {
-            if (data.entries_list) {
-                const entry = data.entries_list;
-                // Assuming 'name' and 'date' fields for this example
-                setInputValue(entry.name || "");
-                // Add more fields as per your entry model
-                // For example: setImageSrcs(entry.images || []);
-            }
-        })
-        .catch(error => console.error("Failed to fetch entry:", error));
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.entries_list) {
+          const entry = data.entries_list;
+          // Assuming 'name' and 'date' fields for this example
+          setInputValue(entry.name || "");
+          // Add more fields as per your entry model
+          // For example: setImageSrcs(entry.images || []);
+        }
+      })
+      .catch((error) => console.error("Failed to fetch entry:", error));
   }, [id]); // Effect dependencies, re-run if ID changes
-  
+
   return (
     <div>
       <div className="centered-header" contentEditable="true">
