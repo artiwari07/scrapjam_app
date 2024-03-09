@@ -18,7 +18,6 @@ export const Login = () => {
   };
 
   const handleCreateAccount = () => {
-
     navigate("/registration");
   };
 
