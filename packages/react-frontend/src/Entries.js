@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import { Responsive, WidthProvider } from "react-grid-layout";
-import Lottie from "react-lottie-player";
+// import Lottie from "react-lottie-player";
 import seaweed from "./seaweed.json";
 import { useNavigate } from "react-router-dom";
 import "./Entries.css";
@@ -22,11 +22,11 @@ export const Entries = () => {
       });
   }, []);
 
-  const handleEdit = (event, entryId) => {
-    event.preventDefault();
-    event.stopPropagation();
-    navigate(`/entry/${entryId}`);
-  };
+  // const handleEdit = (event, entryId) => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   navigate(`/entry/${entryId}`);
+  // };
 
   const postEntry = (entry) => {
     fetch("https://scrapjam.azurewebsites.net/entries", {
