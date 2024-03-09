@@ -10,7 +10,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   console.log(seaweed, "json");
 
   useEffect(() => {
