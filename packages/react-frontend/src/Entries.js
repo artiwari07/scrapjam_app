@@ -58,53 +58,44 @@ export const Entries = () => {
   // comment
 
   return (
-    
     <div className="entries_container">
+      {/* header */}
+      <div className="header">
+        <div className="ScrapJam_title"> ScrapJam </div>
+        <div className="about"> about </div>
+        <div className="tutorial"> tutorial </div>
+        <div className="logout"> logout</div>
+        <div className="header_rec"> </div>
+      </div>
 
-    {/* header */}
-      <div className='header'>
-          <div className='ScrapJam_title'> ScrapJam </div>
-          <div className='about'> about </div>
-          <div className='tutorial'> tutorial </div>
-          <div className='logout'> logout</div>
-          <div className='header_rec'> </div>
-    </div>
-
-
-    <div className='EntryTitle'> Journal Entries</div>
-
-
+      <div className="EntryTitle"> Journal Entries</div>
 
       {/* <h4 className="left">ScrapJam</h4> */}
       {/* <center><h1>Entries</h1></center> */}
-        <div className='blue_background'>
-      
-            <Form handleSubmit={postEntry} />
-            
-            <div style={{ height: '500px',  overflow: 'auto' ,}}>
-              <ResponsiveGridLayout
-              
-                className="layout"
-                layouts={{ lg: generateLayout() }}
-                breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-                cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-              >
-                {entries.map((entry) => (
-                  <div key={entry._id} className="grid-item-Entries">
-                    <div className='bubble_reflection'></div>
-                    <div>
-                      <strong>{entry.name}</strong> <br/>
-                      Date: {entry.date}
-                    </div>
-                  </div>
-                ))}
-              </ResponsiveGridLayout>
-            </div>
-        </div>
-      
+      <div className="blue_background">
+        <Form handleSubmit={postEntry} />
 
-      
-      <div className='footer'>
+        <div style={{ height: "500px", overflow: "auto" }}>
+          <ResponsiveGridLayout
+            className="layout"
+            layouts={{ lg: generateLayout() }}
+            breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+            cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+          >
+            {entries.map((entry) => (
+              <div key={entry._id} className="grid-item-Entries">
+                <div className="bubble_reflection"></div>
+                <div>
+                  <strong>{entry.name}</strong> <br />
+                  Date: {entry.date}
+                </div>
+              </div>
+            ))}
+          </ResponsiveGridLayout>
+        </div>
+      </div>
+
+      <div className="footer">
         {/* <div  id="containerF" class="cols">
             <div class="module"> 
               <Lottie
@@ -156,9 +147,6 @@ export const Entries = () => {
             </div>
             
         </div> */}
-        
-    
-       
       </div>
     </div>
   );
