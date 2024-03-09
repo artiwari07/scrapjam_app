@@ -12,7 +12,7 @@ import "./LogoutButton.css";
 import ProtectedRoute from "./utils/ProtectedRoute";
 
 const LogoutButton = () => {
-  const { value } = useAuth(); // Ensure you are extracting the correct property
+  const { value } = useAuth();
   const { onLogout } = value;
   const navigate = useNavigate();
   const handleLogout = () => {

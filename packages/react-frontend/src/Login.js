@@ -18,7 +18,7 @@ export const Login = () => {
   };
 
   const handleCreateAccount = () => {
-    // Navigate to the registration page
+
     navigate("/registration");
   };
 

@@ -14,23 +14,7 @@ function Entry() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [colorType, setColorType] = useState("");
   const navigate = useNavigate();
-  //   const Entry = () => {
-  //     const { entryId } = useParams();
-  //     const [entry, setEntry] = useState(null);
 
-  //     useEffect(() => {
-  //       // Fetch individual entry details using entryId
-  //       fetch(`http://localhost:8000/entries/${entryId}`)
-  //         .then((res) => res.json())
-  //         .then((json) => setEntry(json)) // Assuming the server returns entry details
-  //         .catch((error) => {
-  //           console.log(error);
-  //         });
-  //     }, [entryId]);
-
-  //     if (!entry) {
-  //       return <div>Loading...</div>; // You can add a loading spinner or message
-  //     }
   const { id } = useParams();
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
