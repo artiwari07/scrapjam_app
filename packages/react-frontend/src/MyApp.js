@@ -20,11 +20,11 @@ const LogoutButton = () => {
     navigate("/login");
   };
 
-  return (
-    <button className="logout-button" onClick={handleLogout}>
-      Logout
-    </button>
-  );
+  // return (
+  //   <button className="logout-button" onClick={handleLogout}>
+  //     Logout
+  //   </button>
+  // );
 };
 
 const MyApp = () => {
