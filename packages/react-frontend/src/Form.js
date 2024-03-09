@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 function Form(props) {
   const [entry, setEntry] = useState({
@@ -22,37 +22,27 @@ function Form(props) {
 
   return (
     <form>
-      <Popup
-        trigger={
-          <button type="button" class="button1">
-            +
-          </button>
-        }
-        position="right center"
-      >
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={entry.name}
-          onChange={handleChange}
-        />
-        <label htmlFor="date">Date</label>
-        <input
-          type="text"
-          name="date"
-          id="date"
-          value={entry.date}
-          onChange={handleChange}
-        />
-
-        <input
-          type="button"
-          class="button1"
-          value="Submit"
-          onClick={submitForm}
-        />
+      <Popup trigger=
+                {<button  class="button_add" type="button">+</button>}
+                position="right center">
+      <label htmlFor="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value={entry.name}
+        onChange={handleChange}
+      />
+      <label htmlFor="date">Date</label>
+      <input
+        type="text"
+        name="date"
+        id="date"
+        value={entry.date}
+        onChange={handleChange}
+      />
+       
+      <input type="button" class="button1"  value="Submit" onClick={submitForm} />
       </Popup>
     </form>
   );
