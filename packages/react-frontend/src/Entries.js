@@ -106,16 +106,7 @@ export const Entries = () => {
 
       
       <div className='footer'>
-      
-        {/* <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-             */}
+    
         
       </div>
     </div>
