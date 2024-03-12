@@ -24,7 +24,9 @@ export const Login = () => {
   return (
     <div className="background-login">
     <div className="container2">
+     
       <div className="form-container2">
+      <div className="footer-login"></div>
         <div className="header-scrapjam"> <div class="my_image"></div> </div>
         
         <div className="user-pass">

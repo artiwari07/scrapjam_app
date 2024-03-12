@@ -206,7 +206,7 @@ input[type=text] {
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
-  background-color:#ff5589;
+  background-color:#ff5d54;
   color: rgb(31, 31, 31);
 }
 input[type=password] {
@@ -215,7 +215,7 @@ input[type=password] {
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
-  background-color:#ff5589;
+  background-color:#ff5d54;
   color: rgb(31, 31, 31);
 }
 

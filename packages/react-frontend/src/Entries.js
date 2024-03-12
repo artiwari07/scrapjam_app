@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import { Responsive, WidthProvider } from "react-grid-layout";
-// import Lottie from "react-lottie-player";
-import seaweed from "./seaweed.json";
-// import { useNavigate } from "react-router-dom";
-
 import "./Entries.css";
 
 
@@ -13,8 +9,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
-  // const navigate = useNavigate();
-  console.log(seaweed, "json");
+  
 
   useEffect(() => {
     fetch("https://scrapjambackend.azurewebsites.net/entries")

@@ -11,13 +11,11 @@
 }
 
 .footer {
-    /* background: #fff url('../images/seaweed.jpg') repeat-x 0 0; */
     position:fixed;
     bottom:0;
     left:0;
     width:100%;
     height: 20%;
-    /* background-color: #D0DAEE; */
     background:URL('./Seaweed-bottom.png');
     background-size: 20%;
   }
@@ -71,7 +69,7 @@
   align-items: center;
   text-align: center;
 
-  color: #f37a2f;
+  color: #ff5d54;
 }
 
 
@@ -89,9 +87,9 @@
 .ScrapJam_title{
     position: absolute;
     width: 450.19px;
-    height: 52.96px;
-    left: 0%;
-    top: 22.41px;
+    height: 65.96px;
+    left: -1%;
+    top: 10%;
     line-height: 70px;
     background:URL('./Logo.png');
     background-size: 60%;
