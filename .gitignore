@@ -7,3 +7,4 @@ react-frontend/reactcert/key.pem
 expressjs-backend/certs/key.pem
 expressjs-backend/certs/cert.pem
 .env
+react-frontend/build
