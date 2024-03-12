@@ -64,7 +64,7 @@ function Entry() {
 
   useEffect(() => {
     // Fetch the specific entry data using the id
-    fetch(`https://scrapjam.azurewebsites.net/entries/${id}`)
+    fetch(`https://scrapjambackend.azurewebsites.net/entries/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.entries_list) {
