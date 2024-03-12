@@ -17,7 +17,7 @@ export const Register = () => {
       return;
     }
 
-    fetch("https://scrapjam.azurewebsites.net/account/register", {
+    fetch("https://scrapjambackend.azurewebsites.net/account/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

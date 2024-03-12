@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import { Responsive, WidthProvider } from "react-grid-layout";
-import Lottie from "react-lottie-player";
+// import Lottie from "react-lottie-player";
 import seaweed from "./seaweed.json";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./Entries.css";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   console.log(seaweed, "json");
 
   useEffect(() => {
-    fetch("https://scrapjam.azurewebsites.net/entries")
+    fetch("https://scrapjambackend.azurewebsites.net/entries")
       .then((res) => res.json())
       .then((json) => setEntries(json["entries_list"]))
       .catch((error) => {
@@ -22,14 +22,14 @@ export const Entries = () => {
       });
   }, []);
 
-  const handleEdit = (event, entryId) => {
-    event.preventDefault();
-    event.stopPropagation();
-    navigate(`/entry/${entryId}`);
-  };
+  // const handleEdit = (event, entryId) => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   navigate(`/entry/${entryId}`);
+  // };
 
   const postEntry = (entry) => {
-    fetch("https://scrapjam.azurewebsites.net/entries", {
+    fetch("https://scrapjambackend.azurewebsites.net/entries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,8 +74,6 @@ export const Entries = () => {
 
     <div className='EntryTitle'> Journal Entries</div>
 
-
-
       {/* <h4 className="left">ScrapJam</h4> */}
       {/* <center><h1>Entries</h1></center> */}
         <div className='blue_background'>
@@ -106,16 +104,7 @@ export const Entries = () => {
 
       
       <div className='footer'>
-      
-        {/* <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-             */}
+    
         
       </div>
     </div>

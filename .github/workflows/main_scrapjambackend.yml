@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - scrapjam
+name: Build and deploy Node.js app to Azure Web App - ScrapJamBackend
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -23,15 +23,20 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm install --workspaces=false
+          npm run -w express-backend build --if-present
+          npm run -w express-backend test --if-present
+        working-directory: packages/express-backend
+
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
+        working-directory: packages/express-backend
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: .
+          path: packages/express-backend/release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,17 +53,20 @@ jobs:
         with:
           name: node-app
 
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7784AE7BA1334DFE84B4A8195EE98AC1 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_353B5D39049D47E19C67C7C7E981EF4E }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_02EE6642E3704BC284FA3A62B89E33F2 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_829AEB2C6F2049D1814A02D6C5D173DF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F750DB9634F14A81A858E497153ABEEE }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D4CDFDF0826543B58A2EB8EC0634080C }}
 
       - name: "Deploy to Azure Web App"
-        uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
         with:
-          app-name: "scrapjam"
+          app-name: "ScrapJamBackend"
           slot-name: "Production"
           package: .
