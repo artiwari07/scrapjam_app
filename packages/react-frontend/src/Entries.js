@@ -60,10 +60,11 @@ export const Entries = () => {
   return (
     
     <div className="entries_container">
+      
 
     {/* header */}
       <div className='header'>
-          <div className='ScrapJam_title'> ScrapJam </div>
+          <div className='ScrapJam_title'>  </div>
           <div className='about'> about </div>
           <div className='tutorial'> tutorial </div>
           <div className='logout'> logout</div>
@@ -105,8 +106,8 @@ export const Entries = () => {
 
       
       <div className='footer'>
-        {/* <div  id="containerF" class="cols">
-            <div class="module"> 
+      
+        {/* <div class="module">
               <Lottie
               loop
               animationData={seaweed}
@@ -114,51 +115,8 @@ export const Entries = () => {
                 style={{ width: 80, height: 80 }}
               /> 
             </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            
-        </div> */}
+             */}
         
-    
-       
       </div>
     </div>
   );

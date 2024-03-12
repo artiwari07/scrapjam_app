@@ -23,14 +23,17 @@ export const Login = () => {
   };
 
   return (
+    <div className="background-login">
     <div className="container2">
       <div className="form-container2">
-        <div className="header-scrapjam"> Scrapjam</div>
+        <div className="header-scrapjam"> <div class="my_image"></div> </div>
+        
         <div className="user-pass">
           <label htmlFor="username" style={{ marginTop: "60px" }}>
             Username:
-          </label>
-          <input
+          </label  >
+          <input 
+            
             type="text"
             id="username"
             value={username}
@@ -61,6 +64,7 @@ export const Login = () => {
 
         <div className="seaweed"></div>
       </div>
+    </div>
     </div>
   );
 };
