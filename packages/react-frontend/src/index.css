@@ -194,32 +194,29 @@ button,
 input {
   /* 1 */
   overflow: visible;
-  background-color:  rgba(141, 104, 44, 0.968);
-  
+  background-color: rgba(141, 104, 44, 0.968);
 }
 
-
-
-input[type=text] {
+input[type="text"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
-  background-color:#ff5d54;
+  background-color: #ff5d54;
   color: rgb(31, 31, 31);
 }
-input[type=password] {
+input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
-  background-color:#ff5d54;
+  background-color: #ff5d54;
   color: rgb(31, 31, 31);
 }
 
-input[type=form] {
+input[type="form"] {
   radius: 15%;
   width: 100%;
   padding: 12px 20px;
@@ -227,7 +224,7 @@ input[type=form] {
   box-sizing: border-box;
   border: 1.5px solid rgb(31, 31, 31);
   border-radius: 5%;
-  background-color:#ffffff;
+  background-color: #ffffff;
   color: rgb(31, 31, 31);
 }
 
@@ -1024,7 +1021,7 @@ a.full-button {
   background-image: url("https://www.freeiconspng.com/thumbs/trash-can-icon/trash-can-icon-3.png");
   background-size: cover;
   background-position: center;
-  padding: 1.5rem 1.5rem;
+  padding: 0.5rem 0.5rem;
 }
 
 .editButton:hover {

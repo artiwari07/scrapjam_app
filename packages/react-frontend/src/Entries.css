@@ -1,31 +1,26 @@
+.entries_container {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 
-
-.entries_container{
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width:100%;
-    
-    background-color: #f7f2e8;
-
+  background-color: #f7f2e8;
 }
 
 .footer {
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    height: 20%;
-    background:URL('./Seaweed-bottom.png');
-    background-size: 20%;
-  }
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: URL("./Seaweed-bottom.png");
+  background-size: 20%;
+}
 
-
-
-#containerF{
-    width: 100%;
-    max-width: 100%;
-    margin:  auto;
+#containerF {
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
 }
 
 .cols {
@@ -72,33 +67,27 @@
   color: #ff5d54;
 }
 
-
-.header{
-
-    position: absolute;
-    width: 1400px;
-    height: 97px;
-    left: 31px;
-    top: 0px;
+.header {
+  position: absolute;
+  width: 1400px;
+  height: 97px;
+  left: 31px;
+  top: 0px;
 }
 
-
-    /* ScrapJam */
-.ScrapJam_title{
-    position: absolute;
-    width: 450.19px;
-    height: 65.96px;
-    left: -1%;
-    top: 10%;
-    line-height: 70px;
-    background:URL('./Logo.png');
-    background-size: 60%;
-    background-repeat: no-repeat;
-    color: #000000;
-
+/* ScrapJam */
+.ScrapJam_title {
+  position: absolute;
+  width: 450.19px;
+  height: 65.96px;
+  left: -1%;
+  top: 10%;
+  line-height: 70px;
+  background: URL("./Logo.png");
+  background-size: 60%;
+  background-repeat: no-repeat;
+  color: #000000;
 }
-
-
 
 /* About */
 .about {
@@ -117,10 +106,8 @@
   align-items: center;
   text-align: center;
 
-
   color: #000000;
 }
-
 
 .tutorial {
   position: absolute;
@@ -172,6 +159,26 @@
   background: #d9d9d9;
 }
 
+.grid-item-Entries {
+  padding: 1%;
+  background-color: rgba(195, 251, 255, 0.6);
+
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
+
+.bubble_reflection {
+  shape-outside: ellipse(20% 30%);
+  clip-path: ellipse(30% 40%);
+  width: 41.71px;
+  height: 80.16px;
+  background: rgba(217, 217, 217, 0.5);
+  transform: rotate(30.96deg);
+}
+
+/* grid item */
 
 .grid-item-Entries {
   padding: 1%;
@@ -193,41 +200,12 @@
   transform: rotate(30.96deg);
 }
 
-
-
-/* grid item */
-
-.grid-item-Entries{
-    
-    padding: 1%; 
-    background-color:  rgba(195, 251, 255, 0.6);
-    /* background: rgba(195, 251, 255, 0.6); */
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    /* Ellipse 41 */
-
-
-  }
-
-  .bubble_reflection{
-    shape-outside: ellipse(20% 30%);
-    clip-path: ellipse(30% 40%);
-    width: 41.71px;
-    height: 80.16px;
-    background: rgba(217, 217, 217, 0.5);
-    transform: rotate(30.96deg);
-  }
-
-  .grid-item-Entries:hover{
-    
-    border-radius: 50%;
-    padding: 10px;
-    background-color:  rgba(195, 251, 255, 0.7);
-    box-shadow:  0 2px 12px #f1dfc4;
-  }
-
+.grid-item-Entries:hover {
+  border-radius: 50%;
+  padding: 10px;
+  background-color: rgba(195, 251, 255, 0.7);
+  box-shadow: 0 2px 12px #f1dfc4;
+}
 
 .grid-item-Entries:hover {
   border-radius: 50%;
@@ -236,5 +214,10 @@
   box-shadow: 0 2px 12px #f1dfc4;
 }
 
-
 /*button_add is on index.css*/
+
+.bubble-container {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
