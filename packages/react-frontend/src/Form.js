@@ -30,9 +30,9 @@ function Form(props) {
         }
         position="right center"
       >
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Entry Title</label>
         <input
-          type="text"
+          type="form"
           name="name"
           id="name"
           value={entry.name}
@@ -40,7 +40,7 @@ function Form(props) {
         />
         <label htmlFor="date">Date</label>
         <input
-          type="text"
+          type="form"
           name="date"
           id="date"
           value={entry.date}

@@ -1,11 +1,41 @@
 .logout-button {
-  background-color: lightcoral; /* Light red color */
-  color: white; /* Text color */
-  padding: 10px 15px; /* Adjust padding for positioning */
-  margin: 10px; /* Adjust margin for spacing */
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
-  font-size: 14px; /* Adjust font size */
-  /* Add any additional styles as needed */
+  position: absolute;
+  width: 86.6px;
+  height: 30.55px;
+  left: 89%;
+  top: 48.89px;
+  font-family: "Indivisible";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border: 0px;
+  background-color: transparent;
+  color: #000000;
+}
+
+.logout-button:hover {
+  position: absolute;
+  width: 86.6px;
+  height: 30.55px;
+  left: 89%;
+  top: 48.89px;
+
+  font-family: "Indivisible";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  border: 0px;
+  background-color: transparent;
+  color: #000000;
+  text-shadow: 0.5px 0.5px 0.5px #232222;
 }

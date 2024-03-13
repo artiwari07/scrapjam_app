@@ -1,36 +1,25 @@
-/* .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  
-  color: white;
-  text-align: center;
-}
- */
-
 .entries_container {
-  background-color: #fff0d6;
-  max-width: 1200px;
-  padding: 0 1rem;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+
+  background-color: #f7f2e8;
 }
 
 .footer {
   position: fixed;
-  left: 0;
   bottom: 0;
+  left: 0;
   width: 100%;
-  /*background-color: red;*/
-  color: green;
-  background-color: green;
-  text-align: center;
+  height: 20%;
+  background: URL("./Seaweed-bottom.png");
+  background-size: 20%;
 }
 
 #containerF {
-  width: 200%;
-  max-width: 100px;
+  width: 100%;
+  max-width: 100%;
   margin: auto;
 }
 
@@ -75,12 +64,10 @@
   align-items: center;
   text-align: center;
 
-  color: #f37a2f;
+  color: #ff5d54;
 }
 
 .header {
-  /* Group 29 */
-
   position: absolute;
   width: 1400px;
   height: 97px;
@@ -91,17 +78,14 @@
 /* ScrapJam */
 .ScrapJam_title {
   position: absolute;
-  width: 406.19px;
-  height: 52.96px;
-  left: 3%;
-  top: 22.41px;
-
-  font-family: "Kranky";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 55px;
+  width: 450.19px;
+  height: 65.96px;
+  left: -1%;
+  top: 10%;
   line-height: 70px;
-
+  background: URL("./Logo.png");
+  background-size: 60%;
+  background-repeat: no-repeat;
   color: #000000;
 }
 
@@ -125,7 +109,6 @@
   color: #000000;
 }
 
-/* Tutorial */
 .tutorial {
   position: absolute;
   width: 94.85px;
@@ -145,7 +128,7 @@
   color: #000000;
 }
 
-/* Logout */
+/* Logout 
 .logout {
   position: absolute;
   width: 86.6px;
@@ -163,7 +146,7 @@
   text-align: center;
 
   color: #000000;
-}
+}*/
 
 /* Rectangle 41 */
 .header_rec {
@@ -176,16 +159,26 @@
   background: #d9d9d9;
 }
 
-/* image 2 */
-.jelly {
-  position: absolute;
-  width: 91.75px;
-  height: 90.64px;
-  left: 285.64px;
-  top: 0px;
-  background: url("https://static.vecteezy.com/system/resources/previews/009/347/302/original/jellyfish-animals-ocean-free-png.png");
-  background-blend-mode: plus-darker;
+.grid-item-Entries {
+  padding: 1%;
+  background-color: rgba(195, 251, 255, 0.6);
+
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  text-align: center;
 }
+
+.bubble_reflection {
+  shape-outside: ellipse(20% 30%);
+  clip-path: ellipse(30% 40%);
+  width: 41.71px;
+  height: 80.16px;
+  background: rgba(217, 217, 217, 0.5);
+  transform: rotate(30.96deg);
+}
+
+/* grid item */
 
 .grid-item-Entries {
   padding: 1%;
@@ -214,4 +207,17 @@
   box-shadow: 0 2px 12px #f1dfc4;
 }
 
+.grid-item-Entries:hover {
+  border-radius: 50%;
+  padding: 10px;
+  background-color: rgba(195, 251, 255, 0.7);
+  box-shadow: 0 2px 12px #f1dfc4;
+}
+
 /*button_add is on index.css*/
+
+.bubble-container {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import { Responsive, WidthProvider } from "react-grid-layout";
-// import Lottie from "react-lottie-player";
-import seaweed from "./seaweed.json";
-// import { useNavigate } from "react-router-dom";
 import "./Entries.css";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
-  // const navigate = useNavigate();
-  console.log(seaweed, "json");
 
   useEffect(() => {
     fetch("https://scrapjambackend.azurewebsites.net/entries")
@@ -21,12 +16,6 @@ export const Entries = () => {
         console.log(error);
       });
   }, []);
-
-  // const handleEdit = (event, entryId) => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   navigate(`/entry/${entryId}`);
-  // };
 
   const postEntry = (entry) => {
     fetch("https://scrapjambackend.azurewebsites.net/entries", {
@@ -55,16 +44,14 @@ export const Entries = () => {
     }));
   };
 
-  // comment
-
   return (
     <div className="entries_container">
       {/* header */}
       <div className="header">
-        <div className="ScrapJam_title"> ScrapJam </div>
+        <div className="ScrapJam_title"> </div>
         <div className="about"> about </div>
         <div className="tutorial"> tutorial </div>
-        <div className="logout"> logout</div>
+
         <div className="header_rec"> </div>
       </div>
 
@@ -85,69 +72,22 @@ export const Entries = () => {
             {entries.map((entry) => (
               <div key={entry._id} className="grid-item-Entries">
                 <div className="bubble_reflection"></div>
+
                 <div>
                   <strong>{entry.name}</strong> <br />
-                  Date: {entry.date}
                 </div>
+
+                {entry.date}
+                <div></div>
+
+                <button type="button" class="garbageButton"></button>
               </div>
             ))}
           </ResponsiveGridLayout>
         </div>
       </div>
 
-      <div className="footer">
-        {/* <div  id="containerF" class="cols">
-            <div class="module"> 
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            <div class="module">
-              <Lottie
-              loop
-              animationData={seaweed}
-              play
-                style={{ width: 80, height: 80 }}
-              /> 
-            </div>
-            
-        </div> */}
-      </div>
+      <div className="footer"></div>
     </div>
   );
 };
