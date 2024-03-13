@@ -72,14 +72,11 @@ export const Entries = () => {
             {entries.map((entry) => (
               <div key={entry._id} className="grid-item-Entries">
                 <div className="bubble_reflection"></div>
-
-                <div>
-                  <strong>{entry.name}</strong> <br />
+                <div className="entry-name">
+                  {entry.name} <br />
                 </div>
-
-                {entry.date}
-                <div></div>
-
+                _________________
+                <div>{entry.date}</div>
                 <button type="button" class="garbageButton"></button>
               </div>
             ))}

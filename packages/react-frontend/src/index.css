@@ -974,15 +974,15 @@ a.full-button {
   border: none;
   font-size: 3em;
   background: transparent;
-  color: #232020;
+  color: #ffffff;
 }
 
 .button_add:hover {
-  text-shadow: 1px 2px 1px hsl(240, 2%, 56%);
+  text-shadow: 1px 2px 1px hsl(0, 0%, 4%);
   border: none;
   font-size: 3em;
   background: transparent;
-  color: #000000;
+  color: #fbfbfb;
 }
 
 .garbageButton:focus,
@@ -1007,21 +1007,28 @@ a.full-button {
   border-radius: 8px;
 }
 
-.garbageButton:hover {
-  background: rgba(239, 201, 140);
-  color: #eeeaea;
-  background-image: url("https://www.freeiconspng.com/thumbs/trash-can-icon/trash-can-icon-3.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.garbageButton {
+.garbageButton:hover,
+.garbageButton:active {
+  width: 25%;
+  height: 30%;
   background-color: rgba(239, 201, 140, 0);
   border: none;
-  background-image: url("https://www.freeiconspng.com/thumbs/trash-can-icon/trash-can-icon-3.png");
+  background-image: url("./trash-open.png");
   background-size: cover;
   background-position: center;
-  padding: 0.5rem 0.5rem;
+  padding: 0.1rem 0.1rem;
+}
+
+.garbageButton,
+.garbageButton:focus {
+  width: 25%;
+  height: 30%;
+  background-color: rgba(239, 201, 140, 0);
+  border: none;
+  background-image: url("./trash-closed.png");
+  background-size: cover;
+  background-position: center;
+  padding: 0.1rem 0.1rem;
 }
 
 .editButton:hover {
