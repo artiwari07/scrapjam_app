@@ -217,7 +217,6 @@ input[type="password"] {
 }
 
 input[type="form"] {
-  radius: 15%;
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -987,7 +986,6 @@ a.full-button {
 
 .garbageButton:focus,
 .editButton:focus,
-.garbageButton:active,
 .editButton:active {
   background: rgba(211, 176, 121, 0.368);
   color: #eeeaea;
@@ -1233,7 +1231,7 @@ textarea.is-success:active {
 ::-moz-placeholder,
 :-moz-placeholder,
 :-ms-input-placeholder {
-  color: #9a9a9a;
+  color: #000000;
 }
 
 /**

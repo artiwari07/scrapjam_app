@@ -35,24 +35,13 @@
   border: 3px solid #abc7eb;
 }
 
-.login-button2,
-.create-account-button2 {
-  width: 55%;
-  max-width: 900px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 50px;
-}
-
 .login-button2 {
   border-radius: 0px;
   background: #535353;
-  /*background: rgb(176, 154, 196);*/
   color: #f7f2e8;
   margin-top: 20px;
   margin-bottom: 10px;
+  width: 30%;
 }
 
 .create-account-button2 {
@@ -60,14 +49,15 @@
   background: #535353;
   color: #f7f2e8;
   margin-bottom: 30px;
+  width: 30%;
 }
 
 .login-button2:hover,
 .create-account-button2:hover {
-  border: #2b303a;
-  background: #47494a;
+  background: #616262;
   color: #f7f2e8;
-  box-shadow: 1px 1px 1px #2b303a;
+
+  width: 30%;
 }
 
 .logout-button2 {
@@ -86,7 +76,7 @@
   background: #d23f30; /* Darker red on hover */
 }
 
-.my_image {
+.logo {
   align-content: center;
   background: URL("./Logo.png");
   width: 100%;
@@ -106,4 +96,11 @@
   height: 20%;
   background: URL("./Seaweed-bottom.png");
   background-size: 20%;
+}
+
+.header-scrapjam {
+  margin-top: 4%;
+  margin-left: 5%;
+  width: 90%;
+  height: 25%;
 }
