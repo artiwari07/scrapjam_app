@@ -46,10 +46,6 @@ function Entry() {
     }
   };
 
-  // const handleChange = (event) => {
-  //   setInputValue(event.target.value);
-  // };
-
   const handleResize = (event, direction, ref, delta) => {};
 
   const openModal = (colorType) => {
