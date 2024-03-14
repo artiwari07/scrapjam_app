@@ -18,6 +18,7 @@ function Entry() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [colorType, setColorType] = useState("");
   const navigate = useNavigate();
+  const [imageUrls, setImageUrls] = useState([]);
   const { value } = useAuth();
   const token = value.token;
 
@@ -36,6 +37,13 @@ function Entry() {
 
   const handleBackToEntries = () => {
     navigate("/entries");
+  };
+
+  const handleAddImageUrl = () => {
+    const url = prompt("Enter image URL:");
+    if (url) {
+      setImageUrls((prevUrls) => [...prevUrls, url]);
+    }
   };
 
   const handleChange = (event) => {
@@ -66,9 +74,23 @@ function Entry() {
     closeModal();
   };
 
+  const imageDisplaySectionStyle = {
+    width: "1000px",
+    height: "650px",
+    overflowWrap: "break-word",
+    textAlign: "left",
+    border: "2px solid #ccc",
+    fontSize: "16px",
+    lineHeight: "2",
+    padding: "10px",
+    backgroundColor: textAreaColor,
+    color: textColor,
+  };
+
   const handleSave = async () => {
     const updatedEntryData = {
       content: inputValue,
+      imageUrls: imageUrls,
     };
 
     try {
@@ -103,6 +125,7 @@ function Entry() {
       .then((res) => res.json())
       .then((data) => {
         setInputValue(data.content || "");
+        setImageUrls(data.imageUrls || []);
       })
       .catch((error) => console.error("Failed to fetch entry:", error));
   }, [id, token]);
@@ -117,9 +140,6 @@ function Entry() {
           <button className="back-to-entries" onClick={handleBackToEntries}>
             Back to Entries
           </button>
-          <button onClick={handleSave} className="save-button">
-            Save Entry
-          </button>
         </div>
         <div className="blue-background2"></div>
         <div
@@ -128,6 +148,10 @@ function Entry() {
           onDragOver={(event) => event.preventDefault()}
         >
           <div className="resizable-textarea">
+            <button onClick={handleSave} class="save-entry">
+              <div className="bubble-reflectionB"></div>
+              <text>Save Entry</text>
+            </button>
             <button
               className="textbox-color"
               onClick={() => openModal("textarea")}
@@ -140,8 +164,11 @@ function Entry() {
               <div className="bubble-reflectionB"></div>
               Text Color
             </button>
-
-            <Popup
+            <button onClick={handleAddImageUrl} class="image-upload">
+              <div className="bubble-reflectionB"></div>
+              <text>Image URL</text>
+            </button>
+            {/* <Popup
               trigger={
                 <button class="image-upload">
                   <div className="bubble-reflectionB"></div>
@@ -156,7 +183,7 @@ function Entry() {
                 style={{ color: "rgb(50, 50, 50)" }}
                 onChange={handleImageUpload}
               />
-            </Popup>
+            </Popup> */}
 
             <textarea
               value={inputValue}
@@ -175,6 +202,12 @@ function Entry() {
                 color: textColor,
               }}
             />
+
+            <div style={imageDisplaySectionStyle}>
+              {imageUrls.map((url, index) => (
+                <img key={index} src={url} alt={`Image ${index}`} />
+              ))}
+            </div>
 
             {imageSrcs.map((imageSrc, index) => (
               <Draggable key={index}>

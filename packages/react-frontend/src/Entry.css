@@ -81,6 +81,13 @@
   margin-top: -10%;
   box-shadow: 1px 2px 12px #7c7c7c;
 }
+.save-entry {
+  background-color: rgba(195, 251, 255, 0.6);
+  color: black;
+  border: 0px solid #008cba;
+  border-radius: 50%;
+  height: 70px;
+}
 
 .textbox-color {
   background-color: rgba(195, 251, 255, 0.6);
@@ -88,9 +95,10 @@
   border: 0px solid #008cba;
   border-radius: 50%;
   height: 70px;
+  margin-left: 10%;
 }
 .text-color {
-  margin-left: 22%;
+  margin-left: 10%;
   background-color: rgba(195, 251, 255, 0.6);
   color: black;
   border: 0px solid #008cba;
@@ -98,7 +106,7 @@
   height: 70px;
 }
 .image-upload {
-  margin-left: 20%;
+  margin-left: 10%;
   background-color: rgba(195, 251, 255, 0.6);
   color: black;
   border: 0px solid #008cba;
