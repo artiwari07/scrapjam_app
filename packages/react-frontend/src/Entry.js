@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import "./pages.css";
-// import Popup from "reactjs-popup";
 import { useAuth } from "./context/AuthProvider";
 import "reactjs-popup/dist/index.css";
 
@@ -156,39 +155,12 @@ function Entry() {
               <div className="bubble-reflectionB"></div>
               <text>Image URL</text>
             </button>
-            {/* <Popup
-              trigger={
-                <button class="image-upload">
-                  <div className="bubble-reflectionB"></div>
-                  <text>Image Upload</text>
-                </button>
-              }
-            >
-              <input
-                type="file"
-                id="imageUpload"
-                accept="image/*"
-                style={{ color: "rgb(50, 50, 50)" }}
-                onChange={handleImageUpload}
-              />
-            </Popup> */}
 
             <textarea
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Enter your journal text here"
-              style={{
-                width: "1000px",
-                height: "650px",
-                overflowWrap: "break-word",
-                textAlign: "left",
-                border: "2px solid #ccc",
-                fontSize: "16px",
-                lineHeight: "2",
-                padding: "10px",
-                backgroundColor: textAreaColor,
-                color: textColor,
-              }}
+              style={imageDisplaySectionStyle}
             />
 
             <div style={imageDisplaySectionStyle}>
@@ -226,10 +198,12 @@ function Entry() {
           contentLabel="Color Picker Modal"
         >
           <form onSubmit={handleColorSubmit}>
-            <label>
-              Enter the new color in RGB format (e.g., '255, 0, 0'):
-            </label>
-            <input type="text" name="colorInput" />
+            <label>Pick a new color:</label>
+            <input
+              type="color"
+              name="colorInput"
+              defaultValue={colorType === "text" ? textColor : textAreaColor}
+            />
             <button style={{ color: "black" }} type="submit">
               Submit
             </button>
