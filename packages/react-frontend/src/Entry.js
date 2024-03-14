@@ -115,6 +115,8 @@ function Entry() {
       .then((data) => {
         setInputValue(data.content || "");
         setImageUrls(data.imageUrls || []);
+        setTextColor(data.textColor || "#000000"); // Set text color from fetched data or default to black
+        setTextAreaColor(data.textAreaColor || "#ffffff"); // Set textbox color from fetched data or default to white
       })
       .catch((error) => console.error("Failed to fetch entry:", error));
   }, [id, token]);
@@ -137,7 +139,7 @@ function Entry() {
           onDragOver={(event) => event.preventDefault()}
         >
           <div className="resizable-textarea">
-            <button onClick={handleSave} class="save-entry">
+            <button onClick={handleSave} className="save-entry">
               <div className="bubble-reflectionB"></div>
               <text>Save Entry</text>
             </button>
@@ -153,7 +155,7 @@ function Entry() {
               <div className="bubble-reflectionB"></div>
               Text Color
             </button>
-            <button onClick={handleAddImageUrl} class="image-upload">
+            <button onClick={handleAddImageUrl} className="image-upload">
               <div className="bubble-reflectionB"></div>
               <text>Image URL</text>
             </button>
@@ -168,7 +170,6 @@ function Entry() {
             <div style={imageDisplaySectionStyle}>
               {imageUrls.map((url, index) => (
                 <img key={index} src={url} alt={""} />
-                // <img key={index} src={url} alt={`Image ${index}`} />
               ))}
             </div>
 
