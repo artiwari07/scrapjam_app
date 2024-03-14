@@ -16,8 +16,8 @@ app.use(
   cors({
     // origin: "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
     origin: [
-      "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
-      "https://scrapjambackend.azurewebsites.net/",
+      "https://zealous-meadow-02867d41e.5.azurestaticapps.net",
+      "https://scrapjambackend.azurewebsites.net",
     ],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
