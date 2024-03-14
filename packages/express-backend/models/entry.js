@@ -22,6 +22,12 @@ const EntrySchema = new mongoose.Schema(
       required: false,
       trim: true,
     },
+    imageUrls: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
   },
   { collection: "entries_list" },
 );
