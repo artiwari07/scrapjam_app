@@ -5,6 +5,9 @@ import Draggable from "react-draggable";
 import { useParams } from "react-router-dom";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
+import "./pages.css";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 function Entry() {
   const [inputValue, setInputValue] = useState("");
@@ -79,104 +82,108 @@ function Entry() {
   }, [id]); // Effect dependencies, re-run if ID changes
 
   return (
-    <div>
-      <div className="centered-header" contentEditable="true">
-        {/* <h1>Entry {entryId}</h1> */}
-        <h1>Entry</h1>
-      </div>
-      <div>
-        <button onClick={handleBackToEntries}>Back to Entries</button>
-      </div>
-      <div
-        className="centered-container2"
-        onDrop={(event) => event.preventDefault()}
-        onDragOver={(event) => event.preventDefault()}
-      >
-        <div className="resizable-textarea">
-          <button
-            onClick={() => openModal("textarea")}
-            style={{
-              backgroundColor: "#B0B8F9",
-              color: "black",
-              marginRight: "10px",
-            }}
-          >
-            Textbox Color
-          </button>
-          <button
-            onClick={() => openModal("text")}
-            style={{
-              backgroundColor: "#B0B8F9",
-              color: "black",
-              marginRight: "10px",
-            }}
-          >
-            Text Color
-          </button>
-          <button>
-            <label htmlFor="imageUpload" style={{ color: "black" }}>
-              Image Upload
-            </label>
-            <input
-              type="file"
-              id="imageUpload"
-              accept="image/*"
-              style={{ color: "rgb(50, 50, 50)" }}
-              onChange={handleImageUpload}
-            />
-          </button>
-          <textarea
-            value={inputValue}
-            onChange={handleChange}
-            placeholder="Enter your text here"
-            style={{
-              width: "1000px",
-              height: "650px",
-              overflowWrap: "break-word",
-              textAlign: "left",
-              border: "2px solid #ccc",
-              fontSize: "16px",
-              lineHeight: "2",
-              padding: "10px",
-              backgroundColor: textAreaColor,
-              color: textColor,
-            }}
-          />
-          {imageSrcs.map((imageSrc, index) => (
-            <Draggable key={index}>
-              <Resizable
-                defaultSize={{ width: 200, height: 150 }}
-                style={{
-                  position: "absolute",
-                  bottom: `${10 + 160 * index}px`,
-                  right: "10px",
-                }}
-                onResize={handleResize}
-              >
-                <img
-                  src={imageSrc}
-                  alt=""
-                  style={{ width: "100%", height: "100%" }}
-                />
-              </Resizable>
-            </Draggable>
-          ))}
+    <div className="containerB">
+      <div className="entry-container">
+        <div className="centered-header" contentEditable="true">
+          Entry
         </div>
-      </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Color Picker Modal"
-      >
-        <form onSubmit={handleColorSubmit}>
-          <label>Enter the new color in RGB format (e.g., '255, 0, 0'):</label>
-          <input type="text" name="colorInput" />
-          <button style={{ color: "black" }} type="submit">
-            Submit
+        <div>
+          <button className="back-to-entries" onClick={handleBackToEntries}>
+            Back to Entries
           </button>
-        </form>
-      </Modal>
+        </div>
+        <div className="blue-background2"></div>
+        <div
+          className="centered-container2"
+          onDrop={(event) => event.preventDefault()}
+          onDragOver={(event) => event.preventDefault()}
+        >
+          <div className="resizable-textarea">
+            <button
+              className="textbox-color"
+              onClick={() => openModal("textarea")}
+            >
+              <div className="bubble-reflectionB"></div>
+              Textbox Color
+            </button>
+
+            <button className="text-color" onClick={() => openModal("text")}>
+              <div className="bubble-reflectionB"></div>
+              Text Color
+            </button>
+
+            <Popup
+              trigger={
+                <button class="image-upload">
+                  <div className="bubble-reflectionB"></div>
+                  <text>Image Upload</text>
+                </button>
+              }
+            >
+              <input
+                type="file"
+                id="imageUpload"
+                accept="image/*"
+                style={{ color: "rgb(50, 50, 50)" }}
+                onChange={handleImageUpload}
+              />
+            </Popup>
+
+            <textarea
+              value={inputValue}
+              onChange={handleChange}
+              placeholder="Enter your text here"
+              style={{
+                width: "1000px",
+                height: "650px",
+                overflowWrap: "break-word",
+                textAlign: "left",
+                border: "2px solid #ccc",
+                fontSize: "16px",
+                lineHeight: "2",
+                padding: "10px",
+                backgroundColor: textAreaColor,
+                color: textColor,
+              }}
+            />
+            {imageSrcs.map((imageSrc, index) => (
+              <Draggable key={index}>
+                <Resizable
+                  defaultSize={{ width: 200, height: 150 }}
+                  style={{
+                    position: "absolute",
+                    bottom: `${10 + 160 * index}px`,
+                    right: "10px",
+                  }}
+                  onResize={handleResize}
+                >
+                  <img
+                    src={imageSrc}
+                    alt=""
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </Resizable>
+              </Draggable>
+            ))}
+          </div>
+        </div>
+
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Color Picker Modal"
+        >
+          <form onSubmit={handleColorSubmit}>
+            <label>
+              Enter the new color in RGB format (e.g., '255, 0, 0'):
+            </label>
+            <input type="text" name="colorInput" />
+            <button style={{ color: "black" }} type="submit">
+              Submit
+            </button>
+          </form>
+        </Modal>
+      </div>
     </div>
   );
 }

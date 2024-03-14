@@ -1,0 +1,114 @@
+.containerA {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  margin-top: 0%;
+  background-color: #f7f2e8;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: URL("./Seaweed-bottom.png");
+  background-size: 20%;
+}
+
+.header {
+  position: absolute;
+  width: 1400px;
+  height: 97px;
+  left: 0%;
+  top: 0px;
+  background-color: #f7f2e8;
+}
+
+/* ScrapJam */
+.ScrapJam_title {
+  position: absolute;
+  width: 450.19px;
+  height: 65.96px;
+  left: 4%;
+  top: 20%;
+  line-height: 70px;
+  background: URL("./Logo.png");
+  background-size: 60%;
+  background-repeat: no-repeat;
+  color: #000000;
+}
+
+.tutorial {
+  position: absolute;
+  width: 94.85px;
+  height: 30.55px;
+  left: 72%;
+  top: 48.89px;
+
+  font-family: "Indivisible";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+/* Rectangle 41 */
+.header_rec {
+  position: absolute;
+  width: 1200px;
+  height: 3.06px;
+  left: 21px;
+  top: 93.94px;
+
+  background: #d9d9d9;
+}
+
+.logout-button {
+  cursor: pointer;
+  position: absolute;
+  width: 86.6px;
+  height: 30.55px;
+  left: 79%;
+  top: 48.89px;
+  font-family: "Indivisible";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border: 0px;
+  background-color: transparent;
+  color: #000000;
+}
+
+.logout-button:hover {
+  position: absolute;
+  width: 86.6px;
+  height: 30.55px;
+  left: 79%;
+  top: 48.89px;
+
+  font-family: "Indivisible";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  border: 0px;
+  background-color: transparent;
+  color: #000000;
+  text-shadow: 1px 2px 12px #7c7c7c;
+  /* text-shadow: 0.5px 0.5px 0.5px #232222; */
+}

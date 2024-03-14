@@ -45,15 +45,15 @@ export const Entries = () => {
   };
 
   return (
-    <div className="entries_container">
+    <div className="containerA">
       {/* header */}
-      <div className="header">
+      {/* <div className="header">
         <div className="ScrapJam_title"> </div>
         <div className="about"> about </div>
         <div className="tutorial"> tutorial </div>
 
         <div className="header_rec"> </div>
-      </div>
+      </div> */}
 
       <div className="EntryTitle"> Journal Entries</div>
 
