@@ -244,8 +244,7 @@ const startServer = async () => {
 
     //get user by id
     app.get("/entries/:id", async (req, res) => {
-      const { id } = req.params; // Correctly capture the 'id' route parameter.
-      // If you're trying to use a 'name' query parameter instead, you should access it using req.query.name
+      const { id } = req.params;
 
       try {
         // Assuming you meant to fetch an entry by its ID:

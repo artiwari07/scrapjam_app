@@ -28,6 +28,16 @@ const EntrySchema = new mongoose.Schema(
         required: false,
       },
     ],
+    textColor: {
+      type: String,
+      required: false,
+      default: "#000000", // Default text color is black
+    },
+    textAreaColor: {
+      type: String,
+      required: false,
+      default: "#ffffff", // Default textbox color is white
+    },
   },
   { collection: "entries_list" },
 );
