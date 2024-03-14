@@ -75,6 +75,8 @@ function Entry() {
     const updatedEntryData = {
       content: inputValue,
       imageUrls: imageUrls,
+      textColor: textColor, // Include textColor in the data to be saved
+      textAreaColor: textAreaColor, // Include textAreaColor in the data to be saved
     };
 
     try {
