@@ -17,6 +17,11 @@ const EntrySchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
+    content: {
+      type: String,
+      required: false,
+      trim: true,
+    },
   },
   { collection: "entries_list" },
 );

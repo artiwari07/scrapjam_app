@@ -26,13 +26,10 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(
-        "https://scrapjambackend.azurewebsites.net/account/login",
-        {
-          userid: value.username,
-          password: value.password,
-        },
-      );
+      const response = await axios.post("http://localhost:8000/account/login", {
+        userid: value.username,
+        password: value.password,
+      });
 
       if (response.data.success) {
         const token = response.data.token;
