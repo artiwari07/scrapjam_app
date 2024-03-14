@@ -23,17 +23,6 @@ function Entry() {
   const token = value.token;
 
   const { id } = useParams();
-  // const handleImageUpload = (event) => {
-  //   const files = Array.from(event.target.files);
-
-  //   files.forEach((file) => {
-  //     const reader = new FileReader();
-  //     reader.onload = (e) => {
-  //       setImageSrcs((prevImageSrcs) => [...prevImageSrcs, e.target.result]);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   });
-  // };
 
   const handleBackToEntries = () => {
     navigate("/entries");
@@ -62,9 +51,9 @@ function Entry() {
     const newColor = event.target.colorInput.value;
 
     if (colorType === "text") {
-      setTextColor(`rgb(${newColor})`);
+      setTextColor(newColor);
     } else if (colorType === "textarea") {
-      setTextAreaColor(`rgb(${newColor})`);
+      setTextAreaColor(newColor);
     }
 
     closeModal();

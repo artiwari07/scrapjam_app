@@ -1042,7 +1042,7 @@ a.full-button {
 }
 
 .editButton:hover {
-  background: rgba(239, 201, 140);
+  background: transparent;
   color: #eeeaea;
   background-image: url("https://static.vecteezy.com/system/resources/previews/009/664/135/non_2x/pencil-icon-transparent-free-png.png");
   background-size: cover;

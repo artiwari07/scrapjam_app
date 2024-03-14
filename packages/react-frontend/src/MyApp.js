@@ -46,18 +46,18 @@ const MyApp = () => {
           <Route
             path="/entries"
             element={
-              // <ProtectedRoute>
+              <ProtectedRoute>
                 <Entries />
-              // {/* </ProtectedRoute> */}
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/entry/:id"
             element={
-              // <ProtectedRoute>
+              <ProtectedRoute>
                 <Entry />
-              // {/* </ProtectedRoute> */}
+              </ProtectedRoute>
             }
           />
         </Routes>
