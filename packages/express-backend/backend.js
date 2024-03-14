@@ -13,14 +13,15 @@ dotenv.config();
 const app = express();
 const port = 8000;
 
-// app.use(
-//   cors({
-//     origin: "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
-//     credentials: true,
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     allowedHeaders: "Content-Type,Authorization",
-//   }),
-// );
+app.use(
+  cors({
+    origin: "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  }),
+);
+
 app.use(express.json());
 
 const saltRounds = 10;
