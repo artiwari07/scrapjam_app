@@ -6,13 +6,13 @@ import { useParams } from "react-router-dom";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import "./pages.css";
-import Popup from "reactjs-popup";
+// import Popup from "reactjs-popup";
 import { useAuth } from "./context/AuthProvider";
 import "reactjs-popup/dist/index.css";
 
 function Entry() {
   const [inputValue, setInputValue] = useState("");
-  const [imageSrcs, setImageSrcs] = useState([]);
+  const [imageSrcs] = useState([]);
   const [textAreaColor, setTextAreaColor] = useState("#ffffff");
   const [textColor, setTextColor] = useState("#000000");
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -23,17 +23,17 @@ function Entry() {
   const token = value.token;
 
   const { id } = useParams();
-  const handleImageUpload = (event) => {
-    const files = Array.from(event.target.files);
+  // const handleImageUpload = (event) => {
+  //   const files = Array.from(event.target.files);
 
-    files.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImageSrcs((prevImageSrcs) => [...prevImageSrcs, e.target.result]);
-      };
-      reader.readAsDataURL(file);
-    });
-  };
+  //   files.forEach((file) => {
+  //     const reader = new FileReader();
+  //     reader.onload = (e) => {
+  //       setImageSrcs((prevImageSrcs) => [...prevImageSrcs, e.target.result]);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   });
+  // };
 
   const handleBackToEntries = () => {
     navigate("/entries");
@@ -46,9 +46,9 @@ function Entry() {
     }
   };
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setInputValue(event.target.value);
+  // };
 
   const handleResize = (event, direction, ref, delta) => {};
 
@@ -94,14 +94,17 @@ function Entry() {
     };
 
     try {
-      const response = await fetch(`http://localhost:8000/entries/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `https://scrapjambackend.azurewebsites.net/entries/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updatedEntryData),
         },
-        body: JSON.stringify(updatedEntryData),
-      });
+      );
       const data = await response.json();
       if (data.success) {
         console.log("Entry updated successfully");
@@ -115,7 +118,7 @@ function Entry() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:8000/entries/${id}`, {
+    fetch(`https://scrapjambackend.azurewebsites.net/entries/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -205,7 +208,8 @@ function Entry() {
 
             <div style={imageDisplaySectionStyle}>
               {imageUrls.map((url, index) => (
-                <img key={index} src={url} alt={`Image ${index}`} />
+                <img key={index} src={url} alt={""} />
+                // <img key={index} src={url} alt={`Image ${index}`} />
               ))}
             </div>
 
