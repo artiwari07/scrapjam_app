@@ -30,6 +30,7 @@ export const Login = () => {
             {" "}
             <div class="logo"></div>{" "}
           </div>
+          <div>{" "}</div><div>{" "}</div>
 
           <div className="user-pass">
             <label htmlFor="username" style={{ marginTop: "60px" }}>

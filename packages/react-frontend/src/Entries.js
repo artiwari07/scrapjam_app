@@ -115,7 +115,7 @@ export const Entries = () => {
                   className="editButton"
                   onClick={() => handleEdit(entry._id)}
                 >
-                  Edit
+                  
                 </button>
                 <button
                   type="button"
