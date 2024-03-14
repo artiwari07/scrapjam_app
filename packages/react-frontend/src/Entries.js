@@ -11,7 +11,7 @@ export const Entries = () => {
   const { value } = useAuth();
   const token = value.token;
   useEffect(() => {
-    fetch("https://scrapjambackend.azurewebsites.net/entries", {
+    fetch("http://localhost:8000/entries", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -28,7 +28,7 @@ export const Entries = () => {
   }, [token]);
 
   const postEntry = (entry) => {
-    fetch("https://scrapjambackend.azurewebsites.net/entries", {
+    fetch("http://localhost:8000/entries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -14,7 +14,8 @@ const app = express();
 const port = 8000;
 app.use(
   cors({
-    origin: "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
+    // origin: "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
+    origin: ["http://localhost:3000", "http://localhost:8000"],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Content-Type,Authorization",
