@@ -94,14 +94,17 @@ function Entry() {
     };
 
     try {
-      const response = await fetch(`http://localhost:8000/entries/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `https://scrapjambackend.azurewebsites.net/entries/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updatedEntryData),
         },
-        body: JSON.stringify(updatedEntryData),
-      });
+      );
       const data = await response.json();
       if (data.success) {
         console.log("Entry updated successfully");
@@ -115,7 +118,7 @@ function Entry() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:8000/entries/${id}`, {
+    fetch(`https://scrapjambackend.azurewebsites.net/entries/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

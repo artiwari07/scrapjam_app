@@ -13,7 +13,7 @@ export const Entries = () => {
   const navigate = useNavigate();
   const token = value.token;
   useEffect(() => {
-    fetch("http://localhost:8000/entries", {
+    fetch("https://scrapjambackend.azurewebsites.net/entries", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ export const Entries = () => {
   }, [token]);
 
   const postEntry = (entry) => {
-    fetch("http://localhost:8000/entries", {
+    fetch("https://scrapjambackend.azurewebsites.net/entries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,24 +52,26 @@ export const Entries = () => {
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this entry?")) {
-      fetch(`http://localhost:8000/entries/${id}`, {
+      fetch(`https://scrapjambackend.azurewebsites.net/entries/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => {
-        if (res.ok) {
-          setEntries((prevEntries) => prevEntries.filter(entry => entry._id !== id));
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to delete entry:", error);
-      });
+        .then((res) => {
+          if (res.ok) {
+            setEntries((prevEntries) =>
+              prevEntries.filter((entry) => entry._id !== id),
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Failed to delete entry:", error);
+        });
     }
   };
-  
+
   const generateLayout = () => {
     return entries.map((entry, index) => {
       // Ensure that entry._id exists before calling toString
@@ -115,7 +117,11 @@ export const Entries = () => {
                 >
                   Edit
                 </button>
-                <button type="button" className="garbageButton" onClick={() => handleDelete(entry._id)}></button>
+                <button
+                  type="button"
+                  className="garbageButton"
+                  onClick={() => handleDelete(entry._id)}
+                ></button>
               </div>
             ))}
           </ResponsiveGridLayout>
