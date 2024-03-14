@@ -8,8 +8,8 @@ import { AuthProvider } from "./context/AuthProvider";
 import { useAuth } from "./context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Entry from "./Entry";
-import "./LogoutButton.css";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import "./pages.css";
 
 const LogoutButton = () => {
   const { value } = useAuth();
@@ -31,7 +31,14 @@ const MyApp = () => {
   return (
     <Router>
       <AuthProvider>
-        <LogoutButton />
+        <div className="header">
+          <div className="ScrapJam_title"> </div>
+          {/* <div className="about"> about </div> */}
+          <div className="tutorial"> tutorial </div>
+          <LogoutButton />
+          <div className="header_rec"> </div>
+        </div>
+
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
@@ -44,6 +51,7 @@ const MyApp = () => {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/entry/:id"
             element={
