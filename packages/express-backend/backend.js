@@ -12,7 +12,6 @@ import authenticateToken from "./authMiddleware.js";
 dotenv.config();
 const app = express();
 const port = 8000;
-
 app.use(
   cors({
     origin: "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
