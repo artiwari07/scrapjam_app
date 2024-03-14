@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "./context/AuthProvider";
 import Form from "./Form";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "./Entries.css";
@@ -7,21 +8,31 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
-
+  const { value } = useAuth();
+  const token = value.token;
   useEffect(() => {
-    fetch("https://scrapjambackend.azurewebsites.net/entries")
+    fetch("https://scrapjambackend.azurewebsites.net/entries", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
-      .then((json) => setEntries(json["entries_list"]))
+      .then((data) => {
+        setEntries(data.entries || []);
+      })
       .catch((error) => {
-        console.log(error);
+        console.error("Failed to fetch entries:", error);
       });
-  }, []);
+  }, [token]);
 
   const postEntry = (entry) => {
     fetch("https://scrapjambackend.azurewebsites.net/entries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(entry),
     })
@@ -30,18 +41,22 @@ export const Entries = () => {
         setEntries((prevEntries) => [...prevEntries, newEntry]);
       })
       .catch((error) => {
-        console.log(error);
+        console.error("Failed to post entry:", error);
       });
   };
 
   const generateLayout = () => {
-    return entries.map((entry, index) => ({
-      i: entry._id.toString(), // Ensuring we use the MongoDB `_id` field
-      x: (index * 2) % 12,
-      y: Math.floor(index / 6),
-      w: 2,
-      h: 1.3,
-    }));
+    return entries.map((entry, index) => {
+      // Ensure that entry._id exists before calling toString
+      const entryId = entry._id ? entry._id.toString() : `entry-${index}`;
+      return {
+        i: entryId,
+        x: (index * 2) % 12,
+        y: Math.floor(index / 6),
+        w: 2,
+        h: 1.3,
+      };
+    });
   };
 
   return (

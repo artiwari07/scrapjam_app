@@ -13,7 +13,15 @@ dotenv.config();
 const app = express();
 const port = 8000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  }),
+);
+
 app.use(express.json());
 
 const saltRounds = 10;
@@ -189,12 +197,15 @@ const startServer = async () => {
     app.delete("/entries/:id", authenticateToken, (req, res) => {
       const userId = req.user._id;
       const entryId = req.params.id;
-      entryServices.deleteEntryById(entryId, userId)
+      entryServices
+        .deleteEntryById(entryId, userId)
         .then((entry) => {
           if (entry) {
             res.status(204).send();
           } else {
-            res.status(404).send("Resource not found or not authorized to delete.");
+            res
+              .status(404)
+              .send("Resource not found or not authorized to delete.");
           }
         })
         .catch((error) => {
@@ -203,29 +214,31 @@ const startServer = async () => {
     });
 
     app.post("/entries", authenticateToken, async (req, res) => {
+      const entryData = req.body;
       const userId = req.user._id;
-      const entryData = { ...req.body, userId };
-    
+      const newEntry = { ...entryData, userId: userId };
+
       try {
-        const newEntry = await entryServices.addEntry(entryData);
-        res.status(201).json(newEntry);
+        const savedEntry = await entryServices.addEntry(newEntry);
+        res.status(201).json(savedEntry);
       } catch (error) {
         console.error("Error adding new entry:", error);
-        res.status(500).json({ message: "Failed to add new entry", error: error.message });
+        res
+          .status(500)
+          .json({ message: "Failed to add new entry", error: error.message });
       }
     });
 
     app.get("/entries", authenticateToken, async (req, res) => {
       const userId = req.user._id;
       try {
-        const entries = await entryServices.getEntries(userId);
-        res.json({ entries_list: entries });
+        const entries = await entryServices.getEntriesForUser(userId);
+        res.json({ success: true, entries });
       } catch (error) {
         console.error("Error fetching entries:", error);
         res.status(500).send("An error occurred on the server.");
       }
     });
-    
 
     //get user by id
     app.get("/entries/:id", async (req, res) => {

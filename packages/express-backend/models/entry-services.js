@@ -37,6 +37,10 @@ function getEntries(userId, name) {
   return entryModel.find(query);
 }
 
+function getEntriesForUser(userId) {
+  return entryModel.find({ userId: userId });
+}
+
 // Remember to export it
 export default {
   addEntry,
@@ -45,4 +49,5 @@ export default {
   findEntryByName,
   deleteEntryById,
   getEntries,
+  getEntriesForUser,
 };

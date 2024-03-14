@@ -15,7 +15,7 @@ const EntrySchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'User'
+      ref: "User",
     },
   },
   { collection: "entries_list" },
