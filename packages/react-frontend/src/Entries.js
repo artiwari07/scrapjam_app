@@ -83,7 +83,6 @@ export const Entries = () => {
           </ResponsiveGridLayout>
         </div>
       </div>
-
       <div className="footer"></div>
     </div>
   );

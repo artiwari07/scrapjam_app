@@ -35,7 +35,8 @@ body {
   max-height: 50px;
 }
 
-.create-account-button {
+.create-account-button,
+.create-account-button:focus {
   border-radius: 0px;
   background: #535353;
   color: #f7f2e8;
@@ -43,7 +44,8 @@ body {
   margin-bottom: 10px;
 }
 
-.create-account-button:hover {
+.create-account-button:hover,
+.create-account-button:active {
   background: #616262;
   color: #f7f2e8;
 }

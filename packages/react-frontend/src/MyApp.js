@@ -33,7 +33,7 @@ const MyApp = () => {
       <AuthProvider>
         <div className="header">
           <div className="ScrapJam_title"> </div>
-          <div className="about"> about </div>
+          {/* <div className="about"> about </div> */}
           <div className="tutorial"> tutorial </div>
           <LogoutButton />
           <div className="header_rec"> </div>
