@@ -41,6 +41,10 @@ function getEntriesForUser(userId) {
   return entryModel.find({ userId: userId });
 }
 
+async function updateEntryById(entryId, entryData) {
+  return entryModel.findByIdAndUpdate(entryId, entryData, { new: true });
+}
+
 // Remember to export it
 export default {
   addEntry,
@@ -50,4 +54,5 @@ export default {
   deleteEntryById,
   getEntries,
   getEntriesForUser,
+  updateEntryById,
 };

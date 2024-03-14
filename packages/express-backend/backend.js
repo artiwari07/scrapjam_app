@@ -14,7 +14,8 @@ const app = express();
 const port = 8000;
 app.use(
   cors({
-    origin: "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
+    // origin: "https://zealous-meadow-02867d41e.5.azurestaticapps.net/",
+    origin: ["http://localhost:3000", "http://localhost:8000"],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Content-Type,Authorization",
@@ -254,6 +255,25 @@ const startServer = async () => {
       } catch (error) {
         console.error(`Error retrieving entry: ${error.message}`);
         return res.status(500).send(`Error retrieving entry: ${error.message}`);
+      }
+    });
+
+    app.put("/entries/:id", authenticateToken, async (req, res) => {
+      const { id } = req.params;
+      const entryData = req.body;
+
+      try {
+        const updatedEntry = await entryServices.updateEntryById(id, entryData);
+        if (updatedEntry) {
+          res.json({ success: true, entry: updatedEntry });
+        } else {
+          res.status(404).json({ success: false, error: "Entry not found" });
+        }
+      } catch (error) {
+        console.error("Error updating entry:", error);
+        res
+          .status(500)
+          .json({ success: false, error: "Internal Server Error" });
       }
     });
 

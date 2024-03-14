@@ -3,15 +3,17 @@ import { useAuth } from "./context/AuthProvider";
 import Form from "./Form";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "./Entries.css";
+import { useNavigate } from "react-router-dom";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const Entries = () => {
   const [entries, setEntries] = useState([]);
   const { value } = useAuth();
+  const navigate = useNavigate();
   const token = value.token;
   useEffect(() => {
-    fetch("https://scrapjambackend.azurewebsites.net/entries", {
+    fetch("http://localhost:8000/entries", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -28,7 +30,7 @@ export const Entries = () => {
   }, [token]);
 
   const postEntry = (entry) => {
-    fetch("https://scrapjambackend.azurewebsites.net/entries", {
+    fetch("http://localhost:8000/entries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +46,9 @@ export const Entries = () => {
         console.error("Failed to post entry:", error);
       });
   };
-
+  const handleEdit = (id) => {
+    navigate(`/entry/${id}`);
+  };
   const generateLayout = () => {
     return entries.map((entry, index) => {
       // Ensure that entry._id exists before calling toString
@@ -74,6 +78,7 @@ export const Entries = () => {
             layouts={{ lg: generateLayout() }}
             breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
             cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+            isDraggable={false}
           >
             {entries.map((entry) => (
               <div key={entry._id} className="grid-item-Entries">
@@ -83,6 +88,12 @@ export const Entries = () => {
                 </div>
                 _________________
                 <div>{entry.date}</div>
+                <button
+                  className="editButton"
+                  onClick={() => handleEdit(entry._id)}
+                >
+                  Edit
+                </button>
                 <button type="button" class="garbageButton"></button>
               </div>
             ))}

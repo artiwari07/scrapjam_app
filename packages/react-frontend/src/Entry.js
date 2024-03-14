@@ -7,6 +7,7 @@ import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import "./pages.css";
 import Popup from "reactjs-popup";
+import { useAuth } from "./context/AuthProvider";
 import "reactjs-popup/dist/index.css";
 
 function Entry() {
@@ -17,6 +18,8 @@ function Entry() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [colorType, setColorType] = useState("");
   const navigate = useNavigate();
+  const { value } = useAuth();
+  const token = value.token;
 
   const { id } = useParams();
   const handleImageUpload = (event) => {
@@ -39,9 +42,7 @@ function Entry() {
     setInputValue(event.target.value);
   };
 
-  const handleResize = (event, direction, ref, delta) => {
-    // Handle image resizing logic
-  };
+  const handleResize = (event, direction, ref, delta) => {};
 
   const openModal = (colorType) => {
     setColorType(colorType);
@@ -65,21 +66,46 @@ function Entry() {
     closeModal();
   };
 
+  const handleSave = async () => {
+    const updatedEntryData = {
+      content: inputValue,
+    };
+
+    try {
+      const response = await fetch(`http://localhost:8000/entries/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedEntryData),
+      });
+      const data = await response.json();
+      if (data.success) {
+        console.log("Entry updated successfully");
+        navigate("/entries");
+      } else {
+        console.error("Failed to update entry:", data.error);
+      }
+    } catch (error) {
+      console.error("Error updating entry:", error);
+    }
+  };
+
   useEffect(() => {
-    // Fetch the specific entry data using the id
-    fetch(`https://scrapjambackend.azurewebsites.net/entries/${id}`)
+    fetch(`http://localhost:8000/entries/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
-        if (data.entries_list) {
-          const entry = data.entries_list;
-          // Assuming 'name' and 'date' fields for this example
-          setInputValue(entry.name || "");
-          // Add more fields as per your entry model
-          // For example: setImageSrcs(entry.images || []);
-        }
+        setInputValue(data.content || "");
       })
       .catch((error) => console.error("Failed to fetch entry:", error));
-  }, [id]); // Effect dependencies, re-run if ID changes
+  }, [id, token]);
 
   return (
     <div className="containerB">
@@ -90,6 +116,9 @@ function Entry() {
         <div>
           <button className="back-to-entries" onClick={handleBackToEntries}>
             Back to Entries
+          </button>
+          <button onClick={handleSave} className="save-button">
+            Save Entry
           </button>
         </div>
         <div className="blue-background2"></div>
@@ -131,8 +160,8 @@ function Entry() {
 
             <textarea
               value={inputValue}
-              onChange={handleChange}
-              placeholder="Enter your text here"
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Enter your journal text here"
               style={{
                 width: "1000px",
                 height: "650px",
@@ -146,6 +175,7 @@ function Entry() {
                 color: textColor,
               }}
             />
+
             {imageSrcs.map((imageSrc, index) => (
               <Draggable key={index}>
                 <Resizable
