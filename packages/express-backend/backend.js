@@ -21,7 +21,6 @@ app.use(
     allowedHeaders: "Content-Type,Authorization",
   }),
 );
-
 app.use(express.json());
 
 const saltRounds = 10;
