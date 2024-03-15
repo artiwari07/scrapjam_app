@@ -34,9 +34,6 @@
       "react-app/jest"
     ]
   },
-  "navigationFallback": {
-    "rewrite": "/index.html"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
