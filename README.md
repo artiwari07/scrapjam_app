@@ -22,6 +22,7 @@ https://github.com/artiwari07/scrapjam_app
 https://github.com/users/artiwari07/projects/1
 
 ### UML
+
 For detailed documentation on our project's structure, including our UML Class Diagram, see our Wiki : https://github.com/artiwari07/scrapjam_app/wiki/UML-Diagram
 
 ### **How to set up the development environment**
