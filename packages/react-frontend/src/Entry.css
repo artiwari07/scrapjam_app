@@ -1,5 +1,41 @@
+.containerB {
+  height: 100%;
+  width: 100%;
+
+  background-color: #f7f2e8;
+}
+
+.entry-container {
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  margin-left: 10%;
+  width: 100%;
+
+  background-color: #f7f2e8;
+}
+
+.blue-background2 {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  left: 0px;
+  top: 30%;
+
+  background: #4b72a5;
+  border-radius: 15px;
+}
+
 .centered-header {
-  text-align: center;
+  margin-top: -5%;
+  margin-left: 30%;
+  font-family: "Cambay";
+  -webkit-text-stroke: 0.7px rgb(82, 82, 90);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 147px;
+  color: #ff5d54;
 }
 
 .centered-container2 {
@@ -26,4 +62,87 @@
   height: 10px;
   background-color: #000;
   cursor: se-resize;
+}
+
+.back-to-entries {
+  margin-left: -5%;
+  padding: 1px;
+  width: 6%;
+  height: 2%;
+  background-color: transparent;
+  color: rgb(1, 1, 1);
+  border: 1px solid #48494a;
+  margin-top: -10%;
+}
+.back-to-entries:hover {
+  background-color: transparent;
+  color: rgb(3, 3, 3);
+  border: rgb(0, 0, 0) a;
+  margin-top: -10%;
+  box-shadow: 1px 2px 12px #7c7c7c;
+}
+.save-entry {
+  background-color: rgba(195, 251, 255, 0.6);
+  color: black;
+  border: 0px solid #008cba;
+  border-radius: 50%;
+  height: 70px;
+}
+
+.textbox-color {
+  background-color: rgba(195, 251, 255, 0.6);
+  color: black;
+  border: 0px solid #008cba;
+  border-radius: 50%;
+  height: 70px;
+  margin-left: 10%;
+}
+.text-color {
+  margin-left: 10%;
+  background-color: rgba(195, 251, 255, 0.6);
+  color: black;
+  border: 0px solid #008cba;
+  border-radius: 50%;
+  height: 70px;
+}
+.image-upload {
+  margin-left: 10%;
+  background-color: rgba(195, 251, 255, 0.6);
+  color: black;
+  border: 0px solid #008cba;
+  border-radius: 50%;
+  height: 70px;
+}
+
+.text-color:hover,
+.textbox-color:hover,
+.image-upload:hover,
+.text-color:active,
+.textbox-color:active,
+.image-upload:active {
+  background-color: rgba(195, 251, 255, 0.6);
+  color: black;
+  border: 0px solid #008cba;
+  border-radius: 50%;
+  height: 70px;
+  box-shadow: 0 2px 12px #f1dfc4;
+}
+.text-color:focus,
+.textbox-color:focus,
+.image-upload:focus {
+  background-color: rgba(195, 251, 255, 0.6);
+  color: black;
+  border: 0px solid #008cba;
+  border-radius: 50%;
+  height: 70px;
+}
+
+.bubble-reflectionB {
+  margin-top: -20%;
+  shape-outside: ellipse(20% 80%);
+  clip-path: ellipse(30% 40%);
+  width: 16.71px;
+  height: 30.16px;
+  background: rgba(217, 217, 217, 0.5);
+  transform: rotate(65.96deg);
 }

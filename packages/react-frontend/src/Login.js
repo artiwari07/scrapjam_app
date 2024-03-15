@@ -28,8 +28,10 @@ export const Login = () => {
           <div className="footer-login"></div>
           <div className="header-scrapjam">
             {" "}
-            <div class="my_image"></div>{" "}
+            <div class="logo"></div>{" "}
           </div>
+          <div> </div>
+          <div> </div>
 
           <div className="user-pass">
             <label htmlFor="username" style={{ marginTop: "60px" }}>
@@ -57,6 +59,7 @@ export const Login = () => {
             Login
           </button>
           {loginError && <p>{loginError}</p>}
+          <div></div>
           <button
             className="create-account-button2"
             onClick={handleCreateAccount}

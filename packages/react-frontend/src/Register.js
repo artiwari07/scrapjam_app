@@ -30,11 +30,10 @@ export const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          // Registration successful
-          // Navigate to the login page
+          // Navigate to the login page if registration is successful
           navigate("/login");
         } else {
-          // Registration failed
+          // Check console for error if Registration failed
           console.error("Registration failed:", data.error);
           // Display an error message to the user
           alert("Registration failed: " + data.error);
@@ -49,35 +48,43 @@ export const Register = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <h1>Scrapjam</h1>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+    <div className="background-login">
+      <div className="container2">
+        <div className="form-container2">
+          <div className="header-scrapjam">
+            {" "}
+            <div class="logo"></div>{" "}
+          </div>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
 
-        {/* Create Account button */}
-        <button className="create-account-button" onClick={handleCreateAccount}>
-          Create Account
-        </button>
-
-        {/* Link to the login page */}
-        <Link to="/login">Already have an account? Login</Link>
+          {/* Create Account button */}
+          <button
+            className="create-account-button"
+            onClick={handleCreateAccount}
+          >
+            Create Account
+          </button>
+          <div></div>
+          {/* Link to the login page */}
+          <Link to="/login">Already have an account? Login</Link>
+        </div>
       </div>
     </div>
   );

@@ -15,8 +15,8 @@ function findEntryById(id_) {
   return entryModel.findById(id_);
 }
 
-function addEntry(user) {
-  const entryToAdd = new entryModel(user);
+function addEntry(entry) {
+  const entryToAdd = new entryModel(entry);
   const promise = entryToAdd.save();
   return promise;
 }
@@ -25,16 +25,24 @@ function findEntryByName(name) {
   return entryModel.find({ name: name });
 }
 
-function deleteEntryById(id) {
-  return entryModel.findByIdAndDelete({ _id: id });
+function deleteEntryById(entryId, userId) {
+  return entryModel.findOneAndDelete({ _id: entryId, userId: userId });
 }
 
-function getEntries(name) {
+function getEntries(userId, name) {
+  let query = { userId: userId };
   if (name) {
-    return findEntryByName(name);
-  } else {
-    return entryModel.find(); // Fetches all entries if no name is provided
+    query.name = name;
   }
+  return entryModel.find(query);
+}
+
+function getEntriesForUser(userId) {
+  return entryModel.find({ userId: userId });
+}
+
+async function updateEntryById(entryId, entryData) {
+  return entryModel.findByIdAndUpdate(entryId, entryData, { new: true });
 }
 
 // Remember to export it
@@ -44,5 +52,7 @@ export default {
   findEntryById,
   findEntryByName,
   deleteEntryById,
-  getEntries, // Add this line to include it in the exported object
+  getEntries,
+  getEntriesForUser,
+  updateEntryById,
 };
