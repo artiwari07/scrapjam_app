@@ -36,7 +36,7 @@ MONGODB_URL = mongodb+srv://tiwariarni:HfY!_PD4uGsZP3z@scrapjam.5z2ibyz.mongodb.
 
 However, we already have our environment variables configured with Azure, so you are able to view our live deployment via the links above.
 
-To run our program locally, you must change all occurences of the frontend and  backend deployed link to [localhost 3000](http://localhost:3000/) and [local host 8000](http://localhost:8000/), respectively
+To run our program locally, you must change all occurences of the frontend and backend deployed link to [localhost 3000](http://localhost:3000/) and [local host 8000](http://localhost:8000/), respectively
 
 ALSO to ensure that you can run our program locally, install the following dependencies in the packages/react-frontend folder
 
