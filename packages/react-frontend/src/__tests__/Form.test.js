@@ -24,7 +24,6 @@ describe("VIEW", () => {
     expect(screen.getByText("Date")).toBeInTheDocument();
     expect(screen.getByText("Submit")).toBeInTheDocument();
   });
-
 });
 
 describe("INPUT", () => {
@@ -43,17 +42,15 @@ describe("INPUT", () => {
     const dateInput = screen.getByLabelText("Date");
     fireEvent.change(dateInput, { target: { value: "2024-03-15" } });
     expect(dateInput.value).toBe("2024-03-15");
-
   });
 });
 
 describe("SUBMIT", () => {
   it("CHECKS SUBMIT", () => {
-
     const handleSubmitMock = jest.fn();
 
     render(<Form handleSubmit={handleSubmitMock} />);
-    
+
     fireEvent.click(screen.getByText("+"));
 
     // Enter values into the input fields
@@ -72,5 +69,4 @@ describe("SUBMIT", () => {
       date: "3/15/24",
     });
   });
-
 });
