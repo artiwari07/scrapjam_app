@@ -25,6 +25,9 @@ https://github.com/users/artiwari07/projects/1
 
 For detailed documentation on our project's structure, including our UML Class Diagram, see our Wiki : https://github.com/artiwari07/scrapjam_app/wiki/UML-Diagram
 
+### Testing Coverage
+To see our testing coverage for our Form.js component, see our coverage report: https://github.com/artiwari07/scrapjam_app/blob/main/docs/coverageReport.html
+
 ### **How to set up the development environment**
 
 Front end azure deployment: https://zealous-meadow-02867d41e.5.azurestaticapps.net/
