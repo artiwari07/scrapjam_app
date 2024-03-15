@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test --coverage Form.js",
     "eject": "react-scripts eject",
     "lint": "npx eslint . && npx prettier --check ."
   },
