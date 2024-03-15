@@ -30,11 +30,10 @@ export const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          // Registration successful
-          // Navigate to the login page
+          // Navigate to the login page if registration is successful
           navigate("/login");
         } else {
-          // Registration failed
+          // Check console for error if Registration failed
           console.error("Registration failed:", data.error);
           // Display an error message to the user
           alert("Registration failed: " + data.error);
