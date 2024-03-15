@@ -80,7 +80,7 @@ If you would like to run our test cases, type
 **npm run test**
 in the packages/react-front/folder
 
-## **Important Note: \***BEFORE PUSHING CODE**\* **
+## **Important Note: BEFORE PUSHING CODE **
 
 For our continous deployment to work properly, before you stage your files to commit,
 please run the following command in the root directory:
